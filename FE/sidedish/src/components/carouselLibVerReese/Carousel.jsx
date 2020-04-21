@@ -29,9 +29,27 @@ const images = [
 	"https://images.unsplash.com/photo-1550064824-8f993041ffd3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
 ];
 
+const CustomButtonGroup = ({ next, previous, goToSlide, carouselState }) => {
+	const { totalItems, currentSlide } = carouselState;
+
+	return (
+		<div className="custom-button-group">
+			<button onClick={() => previous()}>Previous</button>
+			<button onClick={() => next()}>Next</button>
+		</div>
+	);
+};
+
 const LibraryCarousel = () => (
-	<Carousel responsive={responsive} infinite={true} draggable={false}>
-		>
+	<Carousel
+		responsive={responsive}
+		infinite={true}
+		draggable={false}
+		arrows={false}
+		renderButtonGroupOutside={true}
+		customButtonGroup={<CustomButtonGroup />}
+		slidesToSlide={4}
+	>
 		{images.map((image, i) => {
 			return <img key={i + 1} src={image} />;
 		})}
