@@ -1,5 +1,5 @@
 import React from "react";
-import LibraryCarousel from "./components/LibraryCarousel";
+import LibraryCarousel from "./components/carouselLibVerReese/Carousel";
 import "react-multi-carousel/lib/styles.css";
 
 function App() {
