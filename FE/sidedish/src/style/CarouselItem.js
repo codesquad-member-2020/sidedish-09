@@ -49,19 +49,20 @@ const Description = styled.dd`
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	margin-bottom: 10px;
+	margin-bottom: 16px;
 `;
 
 const PriceContainer = styled.dd`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	height: 25px;
 `;
 
 const OriginalPrice = styled.del`
 	color: #666;
 	font-size: 14px;
-	margin: 0 5px 5px;
+	margin: 6px 5px 0;
 	display: inline-block;
 `;
 
@@ -83,6 +84,10 @@ const Unit = styled.span`
 	display: inline-block;
 `;
 
+const BadgeContainer = styled.div`
+	display: flex;
+`;
+
 export {
 	CarouselItemContainer,
 	ThumbnailContainer,
@@ -94,4 +99,5 @@ export {
 	OriginalPrice,
 	SellingPrice,
 	Unit,
+	BadgeContainer,
 };
