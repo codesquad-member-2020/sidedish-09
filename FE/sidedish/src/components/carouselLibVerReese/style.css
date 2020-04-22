@@ -1,3 +1,24 @@
 .container {
-	padding: 40px;
+	padding: 80px;
+}
+
+.slick-prev,
+.slick-next {
+	width: 40px !important;
+	height: 40px !important;
+}
+
+.slick-prev {
+	left: -50px !important;
+	background: url("../../assets/prev.svg") center center no-repeat !important;
+}
+
+.slick-next {
+	right: -50px !important;
+	background: url("../../assets/next.svg") center center no-repeat !important;
+}
+
+.slick-prev:before,
+.slick-next:before {
+	display: none;
 }
