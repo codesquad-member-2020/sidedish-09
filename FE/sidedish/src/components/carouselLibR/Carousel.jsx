@@ -31,8 +31,8 @@ const Carousel = () => {
 								alt={alt}
 								title={title}
 								description={description}
-								normalPrice={n_price}
-								specialPrice={s_price}
+								originalPrice={n_price}
+								sellingPrice={s_price}
 								badge={badge}
 							/>
 						);

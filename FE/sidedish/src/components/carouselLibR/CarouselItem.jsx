@@ -13,7 +13,7 @@ import {
 	Unit,
 } from "../../style/CarouselItem";
 
-const CarouselItem = ({ image, alt, title, description, normalPrice, specialPrice, badge }) => {
+const CarouselItem = ({ image, alt, title, description, originalPrice, sellingPrice, badge }) => {
 	return (
 		<CarouselItemContainer>
 			<ThumbnailContainer>
@@ -23,13 +23,13 @@ const CarouselItem = ({ image, alt, title, description, normalPrice, specialPric
 				<Title>{title}</Title>
 				<Description>{description}</Description>
 				<PriceContainer>
-					{normalPrice ? (
+					{originalPrice ? (
 						<p>
-							<OriginalPrice>{normalPrice}</OriginalPrice>
+							<OriginalPrice>{originalPrice}</OriginalPrice>
 						</p>
 					) : null}
 					<SellingPrice>
-						{specialPrice.slice(0, -1)}
+						{sellingPrice.slice(0, -1)}
 						<Unit>원</Unit>
 					</SellingPrice>
 				</PriceContainer>
