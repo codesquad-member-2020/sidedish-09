@@ -1,9 +1,10 @@
 import React from "react";
+import { BadgeBox } from "../../style/Badge";
 
 const Badge = ({ name }) => (
-	<div>
+	<BadgeBox color={name}>
 		<span>{name}</span>
-	</div>
+	</BadgeBox>
 );
 
 export default Badge;

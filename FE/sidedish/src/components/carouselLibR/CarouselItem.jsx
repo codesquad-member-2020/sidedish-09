@@ -11,6 +11,7 @@ import {
 	OriginalPrice,
 	SellingPrice,
 	Unit,
+	BadgeContainer,
 } from "../../style/CarouselItem";
 
 const CarouselItem = ({ image, alt, title, description, originalPrice, sellingPrice, badge }) => {
@@ -34,7 +35,9 @@ const CarouselItem = ({ image, alt, title, description, originalPrice, sellingPr
 					</SellingPrice>
 				</PriceContainer>
 			</DetailContainer>
-			<div>{badge ? badge.map((name, i) => <Badge key={name + i} name={name} />) : null}</div>
+			<BadgeContainer>
+				{badge ? badge.map((name, i) => <Badge key={name + i} name={name} />) : null}
+			</BadgeContainer>
 		</CarouselItemContainer>
 	);
 };
