@@ -1,4 +1,4 @@
-# SIDEDISH 프로젝트 - 11팀
+# SIDEDISH 프로젝트 - 9팀
 
 ## 구성원
 
