@@ -29,3 +29,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### 데이터베이스 설정 및 secret key 속성 관리 파일
+application-secret.properties
