@@ -2,7 +2,6 @@ import React from "react";
 import Badge from "./Badge";
 
 const CarouselItem = ({ image, alt, title, description, normalPrice, specialPrice, badge }) => {
-	console.log(image, title, description, normalPrice, specialPrice, badge);
 	return (
 		<div>
 			<div>
@@ -24,7 +23,7 @@ const CarouselItem = ({ image, alt, title, description, normalPrice, specialPric
 					</p>
 				</dd>
 			</dl>
-			<div>{badge ? badge.map((name) => <Badge name={name} />) : null}</div>
+			<div>{badge ? badge.map((name, i) => <Badge key={name + i} name={name} />) : null}</div>
 		</div>
 	);
 };
