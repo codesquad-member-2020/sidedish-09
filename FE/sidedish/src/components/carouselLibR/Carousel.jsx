@@ -1,4 +1,5 @@
 import React from "react";
+import CarouselHeader from "./CarouselHeader";
 import Slider from "react-slick";
 import CarouselItem from "./CarouselItem";
 import mockData from "../../assets/mockData.js";
@@ -15,12 +16,12 @@ const Carousel = () => {
 		slidesToScroll: 4,
 	};
 
+	const carouselTitle = "밑반찬";
+	const carouselSubTitle = "언제 먹어도 든든한 반찬";
+
 	return (
 		<CarouselContainer>
-			<div>
-				<h2>밑반찬</h2>
-				<p>언제 먹어도 든든한 반찬</p>
-			</div>
+			<CarouselHeader title={carouselTitle} subTitle={carouselSubTitle} />
 			<Slider {...SETTINGS}>
 				{mockData.body.map(
 					({ detail_hash, image, alt, title, description, n_price, s_price, badge }) => {
