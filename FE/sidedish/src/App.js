@@ -1,11 +1,10 @@
 import React from "react";
-import LibraryCarousel from "./components/carouselLibVerReese/Carousel";
-import "react-multi-carousel/lib/styles.css";
+import Carousel from "./components/carouselLibVerReese/Carousel";
 
 function App() {
 	return (
 		<div className="App">
-			<LibraryCarousel />
+			<Carousel />
 		</div>
 	);
 }
