@@ -6,6 +6,7 @@
 .slick-next {
 	width: 40px !important;
 	height: 40px !important;
+	opacity: 0.5;
 }
 
 .slick-prev {
@@ -21,4 +22,9 @@
 .slick-prev:before,
 .slick-next:before {
 	display: none;
+}
+
+.slick-prev:hover,
+.slick-next:hover {
+	opacity: 1;
 }
