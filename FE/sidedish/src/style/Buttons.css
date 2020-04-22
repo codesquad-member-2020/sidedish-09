@@ -1,0 +1,26 @@
+.slick-prev,
+.slick-next {
+	width: 50px !important;
+	height: 50px !important;
+	opacity: 0.3;
+}
+
+.slick-prev {
+	left: -60px !important;
+	background: url("../assets/prev.svg") center center no-repeat !important;
+}
+
+.slick-next {
+	right: -60px !important;
+	background: url("../assets/next.svg") center center no-repeat !important;
+}
+
+.slick-prev:before,
+.slick-next:before {
+	display: none;
+}
+
+.slick-prev:hover,
+.slick-next:hover {
+	opacity: 1;
+}
