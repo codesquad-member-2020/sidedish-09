@@ -15,6 +15,10 @@ export default class Carousel extends React.Component {
 
 		return (
 			<div className="container">
+				<div>
+					<h2>밑반찬</h2>
+					<p>언제 먹어도 든든한 반찬</p>
+				</div>
 				<Slider {...settings}>
 					<div>
 						<img src="https://images.unsplash.com/photo-1549989476-69a92fa57c36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" />
