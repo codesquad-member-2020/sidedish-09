@@ -1,30 +1,41 @@
 import React from "react";
 import Badge from "./Badge";
+import {
+	CarouselItemContainer,
+	ThumbnailContainer,
+	Thumbnail,
+	DetailContainer,
+	Title,
+	Description,
+	PriceContainer,
+	OriginalPrice,
+	SellingPrice,
+	Unit,
+} from "../../style/CarouselItem";
 
 const CarouselItem = ({ image, alt, title, description, normalPrice, specialPrice, badge }) => {
 	return (
-		<div>
-			<div>
-				<img src={image} alt={alt} />
-			</div>
-			<dl>
-				<dt>{title}</dt>
-				<dd>{description}</dd>
-				<dd>
+		<CarouselItemContainer>
+			<ThumbnailContainer>
+				<Thumbnail src={image} alt={alt} />
+			</ThumbnailContainer>
+			<DetailContainer>
+				<Title>{title}</Title>
+				<Description>{description}</Description>
+				<PriceContainer>
 					{normalPrice ? (
 						<p>
-							{normalPrice}
-							<span>원</span>
+							<OriginalPrice>{normalPrice}</OriginalPrice>
 						</p>
 					) : null}
-					<p>
+					<SellingPrice>
 						{specialPrice.slice(0, -1)}
-						<span>원</span>
-					</p>
-				</dd>
-			</dl>
+						<Unit>원</Unit>
+					</SellingPrice>
+				</PriceContainer>
+			</DetailContainer>
 			<div>{badge ? badge.map((name, i) => <Badge key={name + i} name={name} />) : null}</div>
-		</div>
+		</CarouselItemContainer>
 	);
 };
 
