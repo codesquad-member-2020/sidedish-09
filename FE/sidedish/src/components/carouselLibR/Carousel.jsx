@@ -3,7 +3,7 @@ import CarouselHeader from "./CarouselHeader";
 import Slider from "react-slick";
 import CarouselItem from "./CarouselItem";
 import mockData from "../../assets/mockData.js";
-import "./style.css";
+import "../../style/Buttons.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { CarouselContainer } from "../../style/Carousel";
