@@ -5,6 +5,7 @@ import mockData from "../../assets/mockData.js";
 import "./style.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { CarouselContainer } from "../../style/Carousel";
 
 const Carousel = () => {
 	const SETTINGS = {
@@ -15,7 +16,7 @@ const Carousel = () => {
 	};
 
 	return (
-		<div className="container">
+		<CarouselContainer>
 			<div>
 				<h2>밑반찬</h2>
 				<p>언제 먹어도 든든한 반찬</p>
@@ -38,7 +39,7 @@ const Carousel = () => {
 					}
 				)}
 			</Slider>
-		</div>
+		</CarouselContainer>
 	);
 };
 
