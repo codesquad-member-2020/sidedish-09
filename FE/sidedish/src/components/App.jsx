@@ -1,5 +1,5 @@
 import React from "react";
-import Carousel from "./components/carouselLibVerReese/Carousel";
+import Carousel from "./carouselLibR/Carousel";
 
 function App() {
 	return (
