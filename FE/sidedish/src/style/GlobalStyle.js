@@ -9,6 +9,14 @@ const GlobalStyles = createGlobalStyle`
   body {
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
+  #wrap {
+    overflow: hidden;
+    background: #fff;
+  }
+  .inner {
+    width: ${(props) => props.width};
+    margin: 0 auto;
+  }
 `;
 
 export default GlobalStyles;
