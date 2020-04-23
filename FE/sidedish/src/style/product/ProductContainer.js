@@ -25,4 +25,18 @@ const ProdContainer = styled.div`
 	border-radius: 5px;
 `;
 
-export { ProdBackground, ProdContainer };
+const CloseBtn = styled.button`
+	position: absolute;
+	top: 7px;
+	right: 10px;
+	font-size: 34px;
+	line-height: 1;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	&:focus {
+		outline: none;
+	}
+`;
+
+export { ProdBackground, ProdContainer, CloseBtn };

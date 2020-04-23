@@ -2,7 +2,7 @@ import React from "react";
 import ThumbnailViewer from "./ThumbnailViewer";
 import ProductInfo from "./ProductInfo";
 import prodMockData from "../../assets/prodMockdata";
-import { ProdBackground, ProdContainer } from "../../style/product/ProductContainer";
+import { ProdBackground, ProdContainer, CloseBtn } from "../../style/product/ProductContainer";
 
 const Product = () => {
 	const { thumb_images, ...info } = prodMockData.data;
@@ -11,6 +11,7 @@ const Product = () => {
 			<ProdContainer>
 				<ThumbnailViewer thumbnails={thumb_images} />
 				<ProductInfo {...info} />
+				<CloseBtn>&times;</CloseBtn>
 			</ProdContainer>
 		</ProdBackground>
 	);
