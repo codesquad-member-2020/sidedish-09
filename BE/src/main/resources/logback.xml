@@ -1,0 +1,18 @@
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Todo: 클래스 별로 로깅 레벨 설정 -->
+    <springProfile name="local">
+        <root level="info">
+            <appender-ref ref="STDOUT" />
+        </root>
+    </springProfile>
+
+    <!-- Todo: 환경에 맞는 로거 작성 -->
+    <springProfile name="production">
+    </springProfile>
+</configuration>
