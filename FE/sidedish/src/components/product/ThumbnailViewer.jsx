@@ -1,6 +1,7 @@
 import React from "react";
 
-const ThumbnailViewer = () => {
+const ThumbnailViewer = ({ thumbnails }) => {
+	console.log(thumbnails);
 	return <span>thumbnail viewer</span>;
 };
 
