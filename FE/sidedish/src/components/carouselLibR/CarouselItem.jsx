@@ -12,7 +12,7 @@ import {
 	SellingPrice,
 	Unit,
 	BadgeContainer,
-} from "../../style/CarouselItem";
+} from "style/CarouselItem";
 
 const CarouselItem = ({ image, alt, title, description, originalPrice, sellingPrice, badge }) => {
 	return (
