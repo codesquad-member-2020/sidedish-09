@@ -1,7 +1,7 @@
 import React from "react";
 import Header from './header/Header'
 import Carousel from "./carouselLibR/Carousel";
-import GlobalStyles from "../style/GlobalStyle";
+import GlobalStyles from "style/GlobalStyle";
 
 function App() {
 	return (
