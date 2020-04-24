@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 const InfoContainer = styled.div`
-	width: 50%;
+	width: 60%;
+	margin-left: 20px;
 	* {
 		width: 100%;
 	}
