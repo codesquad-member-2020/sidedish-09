@@ -7,6 +7,7 @@ import "style/carouselLibR/Buttons.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { CarouselContainer } from "style/carouselLibR/Carousel";
+import { ProductProvider } from "contexts/productContext";
 
 const Carousel = () => {
 	const SETTINGS = {
@@ -22,24 +23,26 @@ const Carousel = () => {
 	return (
 		<CarouselContainer>
 			<CarouselHeader title={carouselTitle} subTitle={carouselSubTitle} />
-			<Slider {...SETTINGS}>
-				{mockData.body.map(
-					({ detail_hash, image, alt, title, description, n_price, s_price, badge }) => {
-						return (
-							<CarouselItem
-								key={detail_hash}
-								image={image}
-								alt={alt}
-								title={title}
-								description={description}
-								originalPrice={n_price}
-								sellingPrice={s_price}
-								badge={badge}
-							/>
-						);
-					}
-				)}
-			</Slider>
+			<ProductProvider>
+				<Slider {...SETTINGS}>
+					{mockData.body.map(
+						({ detail_hash, image, alt, title, description, n_price, s_price, badge }) => {
+							return (
+								<CarouselItem
+									key={detail_hash}
+									image={image}
+									alt={alt}
+									title={title}
+									description={description}
+									originalPrice={n_price}
+									sellingPrice={s_price}
+									badge={badge}
+								/>
+							);
+						}
+					)}
+				</Slider>
+			</ProductProvider>
 		</CarouselContainer>
 	);
 };

@@ -1,20 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
+import ReactDOM from "react-dom";
 import ThumbnailViewer from "./ThumbnailViewer";
 import ProductInfo from "./ProductInfo";
-import prodMockData from "assets/prodMockdata";
 import { ProdBackground, ProdContainer, CloseBtn } from "style/product/Product";
+import { ProductContext } from "contexts/productContext";
 
 const Product = () => {
-	const { thumb_images, ...info } = prodMockData.data;
-	return (
-		<ProdBackground>
-			<ProdContainer>
-				<ThumbnailViewer thumbnails={thumb_images} />
-				<ProductInfo {...info} />
-				<CloseBtn>&times;</CloseBtn>
-			</ProdContainer>
-		</ProdBackground>
-	);
+	const { modal, handleModal, modalContent } = useContext(ProductContext);
+	if (modal) {
+		const { thumb_images, ...info } = modalContent.data;
+		return ReactDOM.createPortal(
+			<ProdBackground>
+				<ProdContainer>
+					<ThumbnailViewer thumbnails={thumb_images} />
+					<ProductInfo {...info} />
+					<CloseBtn onClick={() => handleModal()}>&times;</CloseBtn>
+				</ProdContainer>
+			</ProdBackground>,
+			document.getElementById("root")
+		);
+	} else {
+		return null;
+	}
 };
 
 export default Product;
