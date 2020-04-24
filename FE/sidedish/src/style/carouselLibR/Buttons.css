@@ -7,12 +7,12 @@
 
 .slick-prev {
 	left: -60px !important;
-	background: url("../assets/prev.svg") center center no-repeat !important;
+	background: url("../../assets/prev.svg") center center no-repeat !important;
 }
 
 .slick-next {
 	right: -60px !important;
-	background: url("../assets/next.svg") center center no-repeat !important;
+	background: url("../../assets/next.svg") center center no-repeat !important;
 }
 
 .slick-prev:before,

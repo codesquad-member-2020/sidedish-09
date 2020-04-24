@@ -3,10 +3,10 @@ import CarouselHeader from "./CarouselHeader";
 import Slider from "react-slick";
 import CarouselItem from "./CarouselItem";
 import mockData from "assets/mockData.js";
-import "style/Buttons.css";
+import "style/carouselLibR/Buttons.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { CarouselContainer } from "style/Carousel";
+import { CarouselContainer } from "style/carouselLibR/Carousel";
 
 const Carousel = () => {
 	const SETTINGS = {
