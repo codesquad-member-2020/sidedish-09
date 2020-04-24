@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React from "react";
-import { LogoNavStyled } from '../../style/header/logoNav'
+import { LogoNavStyled } from 'style/header/logoNav'
 
 const LogoNav = () => {
   return (

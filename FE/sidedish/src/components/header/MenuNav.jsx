@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { MenuNavStyled } from '../../style/header/menuNav'
+import { MenuNavStyled } from 'style/header/menuNav'
 
 const MenuNav = () => {
   const [menuList, setMenuList] = useState(null);

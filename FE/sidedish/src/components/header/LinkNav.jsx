@@ -1,5 +1,6 @@
 import React from "react";
-import {LinkNavStyled} from '../../style/header/linkNav'
+// import {LinkNavStyled} from '../../style/header/linkNav'
+import {LinkNavStyled} from 'style/header/linkNav'
 
 const LinkNav = () => {
   return (
