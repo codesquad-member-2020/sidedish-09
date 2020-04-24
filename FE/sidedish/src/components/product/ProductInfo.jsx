@@ -44,7 +44,15 @@ const ProductInfo = ({
 		setTotalAmount(addCommas(newTotalAmount));
 	};
 
-	const handleAddBtn = () => {};
+	const handleAddBtn = () => {
+		if (count === 20) {
+			alert("한번에 최대 20개까지 구매하실 수 있습니다.");
+			return;
+		}
+		const newTotalAmount = convertStrToNum(totalAmount) + _sellingPriceInNumber.current;
+		setCount(count + 1);
+		setTotalAmount(addCommas(newTotalAmount));
+	};
 
 	const convertStrToNum = (string) => parseFloat(string.replace(/,/g, "").replace(/^[^-0-9]*/, ""));
 
