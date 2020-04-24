@@ -1,5 +1,5 @@
 import React from "react";
-import { ThumbnailContainer, Current, List, Thumbnail } from "../../style/product/ThumbnailViewer";
+import { ThumbnailContainer, Current, List, Thumbnail } from "style/product/ThumbnailViewer";
 
 const ThumbnailViewer = ({ thumbnails }) => {
 	return (

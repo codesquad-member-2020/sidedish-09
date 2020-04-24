@@ -19,7 +19,7 @@ import {
 	TotalAmount,
 	TotalUnit,
 	CartBtn,
-} from "../../style/product/ProductInfo";
+} from "style/product/ProductInfo";
 
 const ProductInfo = ({
 	title,

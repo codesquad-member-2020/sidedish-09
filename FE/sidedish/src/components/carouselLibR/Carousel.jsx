@@ -6,7 +6,7 @@ import mockData from "assets/mockData.js";
 import "style/carouselLibR/Buttons.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { CarouselContainer } from "../../style/carouselLibR/Carousel";
+import { CarouselContainer } from "style/carouselLibR/Carousel";
 
 const Carousel = () => {
 	const SETTINGS = {
