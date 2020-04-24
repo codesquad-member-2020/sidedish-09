@@ -8,6 +8,7 @@ export default {
 			"http://public.codesquad.kr/jk/storeapp/data/detail/H0FC6/538b8ab021c7814aa4af860d94f81287.jpg",
 			"http://public.codesquad.kr/jk/storeapp/data/detail/H0FC6/adaef08ab0680b087096afa0f0070fad.jpg",
 		],
+		title: "[집밥의완성] 서울식곰탕",
 		product_description: "100% 한우양지로 끓여낸 70년전통의 서울식곰탕",
 		point: "142원",
 		delivery_info:
