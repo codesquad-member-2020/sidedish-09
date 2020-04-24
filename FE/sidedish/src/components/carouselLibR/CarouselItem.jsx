@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Badge from "./Badge";
 import {
 	CarouselItemContainer,
@@ -13,10 +13,14 @@ import {
 	Unit,
 	BadgeContainer,
 } from "style/carouselLibR/CarouselItem";
+import { ProductContext } from "contexts/productContext";
+import prodMockData from "assets/prodMockdata";
 
 const CarouselItem = ({ image, alt, title, description, originalPrice, sellingPrice, badge }) => {
+	const { handleModal } = useContext(ProductContext);
+
 	return (
-		<CarouselItemContainer>
+		<CarouselItemContainer onClick={() => handleModal(prodMockData)}>
 			<ThumbnailContainer>
 				<Thumbnail src={image} alt={alt} />
 			</ThumbnailContainer>
