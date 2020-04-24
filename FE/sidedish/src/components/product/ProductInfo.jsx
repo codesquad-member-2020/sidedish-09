@@ -29,7 +29,7 @@ const ProductInfo = ({
 	delivery_fee,
 	prices: [originalPrice, sellingPrice],
 }) => {
-	let _sellingPriceInNumber = useRef(null);
+	const _sellingPriceInNumber = useRef(null);
 	const [count, setCount] = useState(1);
 	const [totalAmount, setTotalAmount] = useState(sellingPrice.slice(0, -1));
 
