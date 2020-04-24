@@ -19,10 +19,12 @@ const ProdContainer = styled.div`
 	position: relative;
 	z-index: 99;
 	width: 1024px;
-	height: 500px;
+	height: 480px;
 	margin: 0 auto;
 	background: #fff;
 	border-radius: 5px;
+	padding: 18px;
+	display: flex;
 `;
 
 const CloseBtn = styled.button`
