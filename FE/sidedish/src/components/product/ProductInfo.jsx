@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
 	InfoContainer,
 	Title,
@@ -29,6 +29,36 @@ const ProductInfo = ({
 	delivery_fee,
 	prices: [originalPrice, sellingPrice],
 }) => {
+	let _sellingPriceInNumber = useRef(null);
+	const [count, setCount] = useState(1);
+	const [totalAmount, setTotalAmount] = useState(sellingPrice.slice(0, -1));
+
+	useEffect(() => {
+		_sellingPriceInNumber.current = convertStrToNum(sellingPrice);
+	}, []);
+
+	const handleSubstractBtn = () => {
+		if (count === 1) return;
+		const newTotalAmount = convertStrToNum(totalAmount) - _sellingPriceInNumber.current;
+		setCount(count - 1);
+		setTotalAmount(addCommas(newTotalAmount));
+	};
+
+	const handleAddBtn = () => {};
+
+	const convertStrToNum = (string) => parseFloat(string.replace(/,/g, "").replace(/^[^-0-9]*/, ""));
+
+	const addCommas = (totalNum) => {
+		let totalWithComma = "";
+		let totalString = totalNum.toString();
+		for (let i = totalString.length; i > 0; i -= 3) {
+			i - 3 > 0
+				? (totalWithComma = `,${totalString.slice(i - 3, i)}` + totalWithComma)
+				: (totalWithComma = `${totalString.slice(0, i)}` + totalWithComma);
+		}
+		return totalWithComma;
+	};
+
 	return (
 		<InfoContainer>
 			<div>
@@ -54,15 +84,15 @@ const ProductInfo = ({
 				<CountTerm>수량</CountTerm>
 				<ContentDescription>
 					<CountContainer>
-						<CountBtn>-</CountBtn>
-						<Count>1</Count>
-						<CountBtn>+</CountBtn>
+						<CountBtn onClick={handleSubstractBtn}>-</CountBtn>
+						<Count>{count}</Count>
+						<CountBtn onClick={handleAddBtn}>+</CountBtn>
 					</CountContainer>
 				</ContentDescription>
 			</ContentContainer>
 			<TotalContainer>
 				<TotalText>총 상품금액</TotalText>
-				<TotalAmount>{sellingPrice.slice(0, -1)}</TotalAmount>
+				<TotalAmount>{totalAmount}</TotalAmount>
 				<TotalUnit>원</TotalUnit>
 			</TotalContainer>
 			<CartBtn>담기</CartBtn>
