@@ -1,28 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import axios from 'axios';
 import { MenuNavStyled } from 'style/header/menuNav'
+import useAsync from 'hooks/useAsync'
+
+
+const fetchMenuList = async() => {
+  const response = await axios.get(process.env.REACT_APP_MOCKDATA_NAV)
+  return response.data.menu
+}
 
 const MenuNav = () => {
-  const [menuList, setMenuList] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchMenuList = async () => {
-      try {
-        setMenuList(null);
-        setError(null);
-        setLoading(true);
-        const response = await axios.get('http://localhost:3000/data/mockData.json');
-        setMenuList(response.data.menu);
-      } catch (e) {
-        setError(e);
-      }
-      setLoading(false);
-    }
-    fetchMenuList();
-  }, []);
-
+  const state = useAsync(fetchMenuList)
+  const {loading, data: menuList, error} = state
   if (loading) return <div>로딩중</div>;
   if (error) return <div>에러</div>;
   if (!menuList) return null;
