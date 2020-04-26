@@ -4,6 +4,7 @@ import {
 	CarouselItemContainer,
 	ThumbnailContainer,
 	Thumbnail,
+	Overlay,
 	DetailContainer,
 	Title,
 	Description,
@@ -22,7 +23,13 @@ const CarouselItem = ({ image, alt, title, description, originalPrice, sellingPr
 	return (
 		<CarouselItemContainer onClick={() => handleModal(prodMockData)}>
 			<ThumbnailContainer>
-				<Thumbnail src={image} alt={alt} />
+				<div>
+					<Thumbnail src={image} alt={alt} />
+					<Overlay>
+						<div>새벽배송</div>
+						<div>전국택배</div>
+					</Overlay>
+				</div>
 			</ThumbnailContainer>
 			<DetailContainer>
 				<Title>{title}</Title>
