@@ -18,34 +18,32 @@ const SETTINGS = {
 const carouselTitle = "밑반찬";
 const carouselSubTitle = "언제 먹어도 든든한 반찬";
 
-const Carousel = () => {
-	return (
-		<>
-			<CarouselHeader title={carouselTitle} subTitle={carouselSubTitle} />
-			<ProductProvider>
-				<CarouselContainer>
-					<Slider {...SETTINGS}>
-						{mockData.body.map(
-							({ detail_hash, image, alt, title, description, n_price, s_price, badge }) => {
-								return (
-									<CarouselItem
-										key={detail_hash}
-										image={image}
-										alt={alt}
-										title={title}
-										description={description}
-										originalPrice={n_price}
-										sellingPrice={s_price}
-										badge={badge}
-									/>
-								);
-							}
-						)}
-					</Slider>
-				</CarouselContainer>
-			</ProductProvider>
-		</>
-	);
-};
+const Carousel = () => (
+	<>
+		<CarouselHeader title={carouselTitle} subTitle={carouselSubTitle} />
+		<ProductProvider>
+			<CarouselContainer>
+				<Slider {...SETTINGS}>
+					{mockData.body.map(
+						({ detail_hash, image, alt, title, description, n_price, s_price, badge }) => {
+							return (
+								<CarouselItem
+									key={detail_hash}
+									image={image}
+									alt={alt}
+									title={title}
+									description={description}
+									originalPrice={n_price}
+									sellingPrice={s_price}
+									badge={badge}
+								/>
+							);
+						}
+					)}
+				</Slider>
+			</CarouselContainer>
+		</ProductProvider>
+	</>
+);
 
 export default Carousel;
