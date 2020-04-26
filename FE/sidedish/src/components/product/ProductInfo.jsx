@@ -1,4 +1,5 @@
 import React, { useEffect, useReducer } from "react";
+import PropTypes from "prop-types";
 import {
 	InfoContainer,
 	Title,
@@ -126,6 +127,15 @@ const ProductInfo = ({
 			<CartBtn>담기</CartBtn>
 		</InfoContainer>
 	);
+};
+
+ProductInfo.propTypes = {
+	title: PropTypes.string.isRequired,
+	product_description: PropTypes.string.isRequired,
+	point: PropTypes.string.isRequired,
+	delivery_info: PropTypes.string.isRequired,
+	delivery_fee: PropTypes.string.isRequired,
+	prices: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default ProductInfo;
