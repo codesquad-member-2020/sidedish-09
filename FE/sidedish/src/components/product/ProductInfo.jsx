@@ -37,14 +37,14 @@ const ProductInfo = ({
 		_sellingPriceInNumber.current = convertStrToNum(sellingPrice);
 	}, []);
 
-	const handleSubstractBtn = () => {
+	const handleDecrementBtn = () => {
 		if (count === 1) return;
 		const newTotalAmount = convertStrToNum(totalAmount) - _sellingPriceInNumber.current;
 		setCount(count - 1);
 		setTotalAmount(addCommas(newTotalAmount));
 	};
 
-	const handleAddBtn = () => {
+	const handleIncrementBtn = () => {
 		if (count === 20) {
 			alert("한번에 최대 20개까지 구매하실 수 있습니다.");
 			return;
@@ -92,9 +92,9 @@ const ProductInfo = ({
 				<CountTerm>수량</CountTerm>
 				<ContentDescription>
 					<CountContainer>
-						<CountBtn onClick={handleSubstractBtn}>-</CountBtn>
+						<CountBtn onClick={handleDecrementBtn}>-</CountBtn>
 						<Count>{count}</Count>
-						<CountBtn onClick={handleAddBtn}>+</CountBtn>
+						<CountBtn onClick={handleIncrementBtn}>+</CountBtn>
 					</CountContainer>
 				</ContentDescription>
 			</ContentContainer>
