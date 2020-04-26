@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { ThumbnailContainer, Current, List, Thumbnail } from "style/product/ThumbnailViewer";
 
 const ThumbnailViewer = ({ thumbnails }) => {
@@ -28,6 +29,10 @@ const ThumbnailViewer = ({ thumbnails }) => {
 			</div>
 		</ThumbnailContainer>
 	);
+};
+
+ThumbnailViewer.propTypes = {
+	thumbnails: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default ThumbnailViewer;
