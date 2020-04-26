@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const CarouselItemContainer = styled.div`
-	width: 234px;
+	width: 250px;
 	padding: 0 auto;
 	display: flex;
 	flex-direction: column;
@@ -15,12 +15,46 @@ const ThumbnailContainer = styled.div`
 	height: 215px;
 	display: flex;
 	justify-content: center;
+	div {
+		position: relative;
+	}
+`;
+
+const Overlay = styled.div`
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 215px;
+	height: 215px;
+	border-radius: 50%;
+	transition: all 0.1s ease-in-out;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background: rgba(0, 0, 0, 0.5);
+	opacity: 0;
+	div {
+		color: #fff;
+		font-size: 14px;
+		letter-spacing: 1.2;
+		padding: 10px;
+		&:first-child {
+			border-bottom: 1px solid #fff;
+		}
+	}
+	&:hover {
+		opacity: 1;
+	}
 `;
 
 const Thumbnail = styled.img`
 	width: 215px;
 	height: 215px;
 	border-radius: 50%;
+	position: absolute;
+	top: 0;
+	left: 0;
 `;
 
 const DetailContainer = styled.dl`
@@ -91,6 +125,7 @@ const BadgeContainer = styled.div`
 export {
 	CarouselItemContainer,
 	ThumbnailContainer,
+	Overlay,
 	Thumbnail,
 	DetailContainer,
 	Title,

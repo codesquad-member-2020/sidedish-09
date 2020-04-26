@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 const CarouselContainer = styled.div`
-	padding: 0 300px;
+	min-width: 1024px;
+	max-width: 1024px;
+	margin: 0 auto;
 `;
 
 export { CarouselContainer };

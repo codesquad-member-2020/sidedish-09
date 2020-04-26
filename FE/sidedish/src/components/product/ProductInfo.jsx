@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useReducer } from "react";
+import PropTypes from "prop-types";
 import {
 	InfoContainer,
 	Title,
@@ -21,6 +22,40 @@ import {
 	CartBtn,
 } from "style/product/ProductInfo";
 
+let _sellingPriceInNumber;
+
+const convertStrToNum = (string) => parseFloat(string.replace(/,/g, "").replace(/^[^-0-9]*/, ""));
+
+const addCommas = (totalNum) => {
+	let totalWithComma = "";
+	let totalString = totalNum.toString();
+	for (let i = totalString.length; i > 0; i -= 3) {
+		i - 3 > 0
+			? (totalWithComma = `,${totalString.slice(i - 3, i)}` + totalWithComma)
+			: (totalWithComma = `${totalString.slice(0, i)}` + totalWithComma);
+	}
+	return totalWithComma;
+};
+
+const reducer = (state, action) => {
+	switch (action.type) {
+		case "INCREMENT":
+			return {
+				...state,
+				count: state.count + 1,
+				totalAmount: addCommas(convertStrToNum(state.totalAmount) + _sellingPriceInNumber),
+			};
+		case "DECREMENT":
+			return {
+				...state,
+				count: state.count - 1,
+				totalAmount: addCommas(convertStrToNum(state.totalAmount) - _sellingPriceInNumber),
+			};
+		default:
+			return state;
+	}
+};
+
 const ProductInfo = ({
 	title,
 	product_description,
@@ -29,42 +64,28 @@ const ProductInfo = ({
 	delivery_fee,
 	prices: [originalPrice, sellingPrice],
 }) => {
-	const _sellingPriceInNumber = useRef(null);
-	const [count, setCount] = useState(1);
-	const [totalAmount, setTotalAmount] = useState(sellingPrice.slice(0, -1));
+	const [state, dispatch] = useReducer(reducer, {
+		count: 1,
+		totalAmount: sellingPrice.slice(0, -1),
+	});
+
+	const { count, totalAmount } = state;
 
 	useEffect(() => {
-		_sellingPriceInNumber.current = convertStrToNum(sellingPrice);
+		_sellingPriceInNumber = convertStrToNum(sellingPrice);
 	}, []);
 
-	const handleSubstractBtn = () => {
+	const handleDecrementBtn = () => {
 		if (count === 1) return;
-		const newTotalAmount = convertStrToNum(totalAmount) - _sellingPriceInNumber.current;
-		setCount(count - 1);
-		setTotalAmount(addCommas(newTotalAmount));
+		dispatch({ type: "DECREMENT" });
 	};
 
-	const handleAddBtn = () => {
-		if (count === 20) {
-			alert("한번에 최대 20개까지 구매하실 수 있습니다.");
+	const handleIncrementBtn = () => {
+		if (count === 30) {
+			alert("한번에 최대 30개까지 구매하실 수 있습니다.");
 			return;
 		}
-		const newTotalAmount = convertStrToNum(totalAmount) + _sellingPriceInNumber.current;
-		setCount(count + 1);
-		setTotalAmount(addCommas(newTotalAmount));
-	};
-
-	const convertStrToNum = (string) => parseFloat(string.replace(/,/g, "").replace(/^[^-0-9]*/, ""));
-
-	const addCommas = (totalNum) => {
-		let totalWithComma = "";
-		let totalString = totalNum.toString();
-		for (let i = totalString.length; i > 0; i -= 3) {
-			i - 3 > 0
-				? (totalWithComma = `,${totalString.slice(i - 3, i)}` + totalWithComma)
-				: (totalWithComma = `${totalString.slice(0, i)}` + totalWithComma);
-		}
-		return totalWithComma;
+		dispatch({ type: "INCREMENT" });
 	};
 
 	return (
@@ -92,9 +113,9 @@ const ProductInfo = ({
 				<CountTerm>수량</CountTerm>
 				<ContentDescription>
 					<CountContainer>
-						<CountBtn onClick={handleSubstractBtn}>-</CountBtn>
+						<CountBtn onClick={handleDecrementBtn}>-</CountBtn>
 						<Count>{count}</Count>
-						<CountBtn onClick={handleAddBtn}>+</CountBtn>
+						<CountBtn onClick={handleIncrementBtn}>+</CountBtn>
 					</CountContainer>
 				</ContentDescription>
 			</ContentContainer>
@@ -106,6 +127,15 @@ const ProductInfo = ({
 			<CartBtn>담기</CartBtn>
 		</InfoContainer>
 	);
+};
+
+ProductInfo.propTypes = {
+	title: PropTypes.string.isRequired,
+	product_description: PropTypes.string.isRequired,
+	point: PropTypes.string.isRequired,
+	delivery_info: PropTypes.string.isRequired,
+	delivery_fee: PropTypes.string.isRequired,
+	prices: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default ProductInfo;

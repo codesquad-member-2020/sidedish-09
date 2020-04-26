@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { ThumbnailContainer, Current, List, Thumbnail } from "style/product/ThumbnailViewer";
 
 const ThumbnailViewer = ({ thumbnails }) => {
@@ -15,15 +16,23 @@ const ThumbnailViewer = ({ thumbnails }) => {
 			</Current>
 			<div>
 				<List>
-					{thumbnails.map((url) => (
-						<Thumbnail>
-							<img src={url} onMouseEnter={handleCurrentThumbnail} />
+					{thumbnails.map((url, index) => (
+						<Thumbnail key={url}>
+							<img
+								src={url}
+								alt={"Product image " + (index + 1)}
+								onMouseEnter={handleCurrentThumbnail}
+							/>
 						</Thumbnail>
 					))}
 				</List>
 			</div>
 		</ThumbnailContainer>
 	);
+};
+
+ThumbnailViewer.propTypes = {
+	thumbnails: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default ThumbnailViewer;

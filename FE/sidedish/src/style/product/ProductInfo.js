@@ -78,7 +78,7 @@ const Unit = styled.span`
 
 const CountContainer = styled.div`
 	display: flex;
-	padding-left: 80%;
+	padding-left: 83%;
 `;
 
 const CountTerm = styled.dt`
