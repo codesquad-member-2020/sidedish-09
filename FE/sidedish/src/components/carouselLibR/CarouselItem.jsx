@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import PropTypes from "prop-types";
 import Badge from "./Badge";
 import {
 	CarouselItemContainer,
@@ -17,7 +18,16 @@ import {
 import { ProductContext } from "contexts/productContext";
 import prodMockData from "assets/prodMockdata";
 
-const CarouselItem = ({ image, alt, title, description, originalPrice, sellingPrice, badge }) => {
+const CarouselItem = ({
+	image,
+	alt,
+	deliveryType,
+	title,
+	description,
+	originalPrice,
+	sellingPrice,
+	badge,
+}) => {
 	const { handleModal } = useContext(ProductContext);
 
 	return (
@@ -26,8 +36,9 @@ const CarouselItem = ({ image, alt, title, description, originalPrice, sellingPr
 				<div>
 					<Thumbnail src={image} alt={alt} />
 					<Overlay>
-						<div>새벽배송</div>
-						<div>전국택배</div>
+						{deliveryType.map((type) => (
+							<div>{type}</div>
+						))}
 					</Overlay>
 				</div>
 			</ThumbnailContainer>
@@ -51,6 +62,17 @@ const CarouselItem = ({ image, alt, title, description, originalPrice, sellingPr
 			</BadgeContainer>
 		</CarouselItemContainer>
 	);
+};
+
+CarouselItem.propTypes = {
+	image: PropTypes.string.isRequired,
+	alt: PropTypes.string.isRequired,
+	deliveryType: PropTypes.arrayOf(PropTypes.string).isRequired,
+	title: PropTypes.string.isRequired,
+	description: PropTypes.string.isRequired,
+	originalPrice: PropTypes.string,
+	sellingPrice: PropTypes.string.isRequired,
+	badge: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default CarouselItem;

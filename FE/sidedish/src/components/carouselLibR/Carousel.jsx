@@ -25,12 +25,23 @@ const Carousel = () => (
 			<CarouselContainer>
 				<Slider {...SETTINGS}>
 					{mockData.body.map(
-						({ detail_hash, image, alt, title, description, n_price, s_price, badge }) => {
+						({
+							detail_hash,
+							image,
+							alt,
+							delivery_type,
+							title,
+							description,
+							n_price,
+							s_price,
+							badge,
+						}) => {
 							return (
 								<CarouselItem
 									key={detail_hash}
 									image={image}
 									alt={alt}
+									deliveryType={delivery_type}
 									title={title}
 									description={description}
 									originalPrice={n_price}
