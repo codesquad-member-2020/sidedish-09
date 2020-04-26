@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useReducer } from "react";
 import {
 	InfoContainer,
 	Title,
@@ -21,6 +21,40 @@ import {
 	CartBtn,
 } from "style/product/ProductInfo";
 
+let _sellingPriceInNumber;
+
+const convertStrToNum = (string) => parseFloat(string.replace(/,/g, "").replace(/^[^-0-9]*/, ""));
+
+const addCommas = (totalNum) => {
+	let totalWithComma = "";
+	let totalString = totalNum.toString();
+	for (let i = totalString.length; i > 0; i -= 3) {
+		i - 3 > 0
+			? (totalWithComma = `,${totalString.slice(i - 3, i)}` + totalWithComma)
+			: (totalWithComma = `${totalString.slice(0, i)}` + totalWithComma);
+	}
+	return totalWithComma;
+};
+
+const reducer = (state, action) => {
+	switch (action.type) {
+		case "INCREMENT":
+			return {
+				...state,
+				count: state.count + 1,
+				totalAmount: addCommas(convertStrToNum(state.totalAmount) + _sellingPriceInNumber),
+			};
+		case "DECREMENT":
+			return {
+				...state,
+				count: state.count - 1,
+				totalAmount: addCommas(convertStrToNum(state.totalAmount) - _sellingPriceInNumber),
+			};
+		default:
+			return state;
+	}
+};
+
 const ProductInfo = ({
 	title,
 	product_description,
@@ -29,42 +63,28 @@ const ProductInfo = ({
 	delivery_fee,
 	prices: [originalPrice, sellingPrice],
 }) => {
-	const _sellingPriceInNumber = useRef(null);
-	const [count, setCount] = useState(1);
-	const [totalAmount, setTotalAmount] = useState(sellingPrice.slice(0, -1));
+	const [state, dispatch] = useReducer(reducer, {
+		count: 1,
+		totalAmount: sellingPrice.slice(0, -1),
+	});
+
+	const { count, totalAmount } = state;
 
 	useEffect(() => {
-		_sellingPriceInNumber.current = convertStrToNum(sellingPrice);
+		_sellingPriceInNumber = convertStrToNum(sellingPrice);
 	}, []);
 
 	const handleDecrementBtn = () => {
 		if (count === 1) return;
-		const newTotalAmount = convertStrToNum(totalAmount) - _sellingPriceInNumber.current;
-		setCount(count - 1);
-		setTotalAmount(addCommas(newTotalAmount));
+		dispatch({ type: "DECREMENT" });
 	};
 
 	const handleIncrementBtn = () => {
-		if (count === 20) {
-			alert("한번에 최대 20개까지 구매하실 수 있습니다.");
+		if (count === 30) {
+			alert("한번에 최대 30개까지 구매하실 수 있습니다.");
 			return;
 		}
-		const newTotalAmount = convertStrToNum(totalAmount) + _sellingPriceInNumber.current;
-		setCount(count + 1);
-		setTotalAmount(addCommas(newTotalAmount));
-	};
-
-	const convertStrToNum = (string) => parseFloat(string.replace(/,/g, "").replace(/^[^-0-9]*/, ""));
-
-	const addCommas = (totalNum) => {
-		let totalWithComma = "";
-		let totalString = totalNum.toString();
-		for (let i = totalString.length; i > 0; i -= 3) {
-			i - 3 > 0
-				? (totalWithComma = `,${totalString.slice(i - 3, i)}` + totalWithComma)
-				: (totalWithComma = `${totalString.slice(0, i)}` + totalWithComma);
-		}
-		return totalWithComma;
+		dispatch({ type: "INCREMENT" });
 	};
 
 	return (
