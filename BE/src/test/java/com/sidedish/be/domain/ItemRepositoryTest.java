@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -18,6 +19,15 @@ class ItemRepositoryTest {
 
     @Autowired
     private ItemRepository repository;
+
+    @Test
+    public void 해쉬값을_통해_아이템_가져오기() {
+        String hash = "H4665";
+        Item item = repository.findByHash(hash).orElseThrow(() -> new IllegalArgumentException(hash));
+
+        assertThat(item.getHash()).isEqualTo(hash);
+        assertThat(item.getNPrice()).isGreaterThan(0);
+    }
 
     @Test
     public void 해쉬값을_통해_아이템_리스트_가져오기() {
