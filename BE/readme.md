@@ -12,18 +12,15 @@
 ## 2. 사용법
 
 1. database schema 관리를 위해 `flyway.conf` 파일 작성
-2. 테스트 코드 실행을 위해 `src/test/resource/application-secret.properties` 파일 작성
-3. 스프링 구동을 위해 `src/main/resource/application-secret.properties` 파일 작성
+2. 스프링 구동을 위해 `src/main/resource/application-secret.properties` 파일 작성
 
 **flyway.conf**
 ```
 flyway.url=
-flyway.schemas=
 flyway.user=
 flyway.password=
 ```
 
-**src/test/resource/application-secret.properties**
 **src/main/resource/application-secret.properties**
 ```properties
 spring.datasource.driver-class-name=
