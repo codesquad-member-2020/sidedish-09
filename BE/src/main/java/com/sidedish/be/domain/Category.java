@@ -24,13 +24,10 @@ public class Category {
     private List<Long> itemIds = new ArrayList<>();
 
     @Builder
-    public Category(Long id, String title, String description) {
+    public Category(Long id, String title, String description, List<Long> itemIds) {
         this.id = id;
         this.title = title;
         this.description = description;
-    }
-
-    public void addItem(Item item) {
-        itemIds.add(item.getId());
+        this.itemIds.addAll(itemIds);
     }
 }
