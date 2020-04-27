@@ -30,7 +30,7 @@ public class ItemRepository {
                     "LEFT OUTER JOIN detailImage dI on i.id = dI.item_id " +
                     "WHERE i.hash = :hash GROUP BY i.id";
 
-    private final String SELECT_ITEMS_BY_HASH =
+    private final String SELECT_ITEMS_BY_ID =
             "SELECT i.id, i.hash, i.image, i.title, i.description, i.n_price, i.delivery_fee, i.delivery_date, " +
                     "GROUP_CONCAT(DISTINCT d.delivery_id), GROUP_CONCAT(DISTINCT s.sale_id), " +
                     "GROUP_CONCAT(DISTINCT t.url), GROUP_CONCAT(DISTINCT dI.url) FROM item i " +
@@ -38,7 +38,7 @@ public class ItemRepository {
                     "LEFT OUTER JOIN item_sale s on i.id = s.item_id " +
                     "LEFT OUTER JOIN thumbnail t on i.id = t.item_id " +
                     "LEFT OUTER JOIN detailImage dI on i.id = dI.item_id " +
-                    "WHERE i.hash In ( :hash ) GROUP BY i.id";
+                    "WHERE i.id In ( :ids ) GROUP BY i.id";
 
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -87,8 +87,8 @@ public class ItemRepository {
         return Optional.ofNullable(jdbcTemplate.queryForObject(SELECT_ITEM_BY_HASH, parameterSource, itemRowMapper));
     }
 
-    public List<Item> findByHash(List<String> hash) {
-        SqlParameterSource parameterSource = new MapSqlParameterSource().addValue("hash", hash.isEmpty() ? null : hash);
-        return jdbcTemplate.query(SELECT_ITEMS_BY_HASH, parameterSource, itemRowMapper);
+    public List<Item> findById(List<Long> ids) {
+        SqlParameterSource parameterSource = new MapSqlParameterSource().addValue("ids", ids.isEmpty() ? null : ids);
+        return jdbcTemplate.query(SELECT_ITEMS_BY_ID, parameterSource, itemRowMapper);
     }
 }

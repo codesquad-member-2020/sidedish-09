@@ -30,7 +30,7 @@ class CategoryRepositoryTest {
 
     @Test
     public void 카테고리_모두_가져오기() {
-        List<Category> categories = repository.findAll();
+        List<Category> categories = repository.findAll("carousel");
 
         assertThat(categories.size()).isEqualTo(repository.count());
     }

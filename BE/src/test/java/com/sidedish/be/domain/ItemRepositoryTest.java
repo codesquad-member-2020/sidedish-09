@@ -31,12 +31,12 @@ class ItemRepositoryTest {
 
     @Test
     public void 해쉬값을_통해_아이템_리스트_가져오기() {
-        List<String> hashList = Arrays.asList("H602F", "H9F0B");
-        List<Item> items = repository.findByHash(hashList);
+        List<Long> ids = Arrays.asList(1L, 12L);
+        List<Item> items = repository.findById(ids);
 
         assertThat(items.size()).isEqualTo(2);
-        assertThat(items.get(0).getHash()).isEqualTo(hashList.get(0));
-        assertThat(items.get(1).getHash()).isEqualTo(hashList.get(1));
+        assertThat(items.get(0).getId()).isEqualTo(ids.get(0));
+        assertThat(items.get(1).getId()).isEqualTo(ids.get(1));
     }
 
 }

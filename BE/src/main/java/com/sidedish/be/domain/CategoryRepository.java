@@ -22,7 +22,7 @@ public class CategoryRepository {
 
     private final String SELECT_ALL_CATEGORY = "SELECT id, title, description, GROUP_CONCAT(DISTINCT item_id) " +
             "FROM category LEFT OUTER JOIN category_item on id = category_item.category_id " +
-            "GROUP BY id";
+            "WHERE type = :type GROUP BY id";
 
     private final String SELECT_CATEGORY_BY_ID = "SELECT id, title, description, GROUP_CONCAT(DISTINCT item_id) " +
             "FROM category LEFT OUTER JOIN category_item on id = category_item.category_id " +
@@ -49,8 +49,9 @@ public class CategoryRepository {
         return Optional.ofNullable(jdbcTemplate.queryForObject(SELECT_CATEGORY_BY_ID, parameterSource, categoryRowMapper));
     }
 
-    public List<Category> findAll() {
-        return jdbcTemplate.query(SELECT_ALL_CATEGORY, categoryRowMapper);
+    public List<Category> findAll(String type) {
+        SqlParameterSource parameterSource = new MapSqlParameterSource().addValue("type", type);
+        return jdbcTemplate.query(SELECT_ALL_CATEGORY, parameterSource, categoryRowMapper);
     }
 
     public Integer count() {

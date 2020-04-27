@@ -34,7 +34,9 @@ public class DetailItemResponseDto {
     public DetailItemResponseDto(Item item, List<Sale> sales) {
         int totalDiscountPercent = sales.stream().map(Sale::getPercent).reduce(0, Integer::sum);
 
-        this.n_price = item.getNPrice();
+        if(totalDiscountPercent > 0) {
+            this.n_price = item.getNPrice();
+        }
         this.s_price = item.getNPrice() - (item.getNPrice() * totalDiscountPercent / 100);
         this.point = String.format("%s원", decimalFormat.format(s_price / 10));
         this.hash = item.getHash();
