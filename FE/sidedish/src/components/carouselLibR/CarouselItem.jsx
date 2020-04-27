@@ -52,7 +52,7 @@ const CarouselItem = ({
 						</p>
 					) : null}
 					<SellingPrice>
-						{sellingPrice.slice(0, -1)}
+						{sellingPrice}
 						<Unit>원</Unit>
 					</SellingPrice>
 				</PriceContainer>

@@ -15,16 +15,13 @@ const SETTINGS = {
 	initialSlide: 0,
 };
 
-const carouselTitle = "밑반찬";
-const carouselSubTitle = "언제 먹어도 든든한 반찬";
-
 const Carousel = () => (
 	<>
-		<CarouselHeader title={carouselTitle} subTitle={carouselSubTitle} />
+		<CarouselHeader title={mockData.title} subTitle={mockData.description} />
 		<ProductProvider>
 			<CarouselContainer>
 				<Slider {...SETTINGS}>
-					{mockData.body.map(
+					{mockData.items.map(
 						({
 							detail_hash,
 							image,
