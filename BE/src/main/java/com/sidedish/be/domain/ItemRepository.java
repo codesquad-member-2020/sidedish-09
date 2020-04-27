@@ -88,7 +88,7 @@ public class ItemRepository {
     }
 
     public List<Item> findByHash(List<String> hash) {
-        SqlParameterSource parameterSource = new MapSqlParameterSource().addValue("hash", hash);
+        SqlParameterSource parameterSource = new MapSqlParameterSource().addValue("hash", hash.isEmpty() ? null : hash);
         return jdbcTemplate.query(SELECT_ITEMS_BY_HASH, parameterSource, itemRowMapper);
     }
 }

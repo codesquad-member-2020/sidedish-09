@@ -27,7 +27,7 @@ public class SaleRepository {
                     .build();
 
     public List<Sale> findById(List<Long> ids) {
-        SqlParameterSource parameterSource = new MapSqlParameterSource().addValue("ids", ids);
+        SqlParameterSource parameterSource = new MapSqlParameterSource().addValue("ids", ids.isEmpty() ? null : ids);
         return jdbcTemplate.query(SELECT_DELIVERIES, parameterSource, rowDeliveryMapper);
     }
 }

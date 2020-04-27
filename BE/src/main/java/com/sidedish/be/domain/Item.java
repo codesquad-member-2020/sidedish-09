@@ -1,15 +1,13 @@
 package com.sidedish.be.domain;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @ToString
+@Setter
 @Getter
 @NoArgsConstructor
 public class Item {
@@ -38,6 +36,8 @@ public class Item {
     private List<String> thumbnails = new ArrayList<>();
 
     private List<String> detailImages = new ArrayList<>();
+
+    private List<Sale> sales = new ArrayList<>();
 
     @Builder
     public Item(Long id, String hash, String image, String title, String description,
