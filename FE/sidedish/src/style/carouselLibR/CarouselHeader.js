@@ -18,4 +18,8 @@ const SubTitle = styled.p`
 	font-size: 32px;
 `;
 
-export { Header, Title, SubTitle };
+const Strong = styled.span`
+	font-weight: bold;
+`;
+
+export { Header, Title, SubTitle, Strong };
