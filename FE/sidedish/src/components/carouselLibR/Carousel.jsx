@@ -8,7 +8,7 @@ import axios from "axios";
 import "style/carouselLibR/Buttons.css";
 import { CarouselContainer } from "style/carouselLibR/Carousel";
 import { ProductProvider } from "contexts/productContext";
-import { LOADER_CONTAINER_STYLE, SETTINGS, MESSAGE, CAROUSEL_TITLE } from "./const";
+import { LOADER_CONTAINER_STYLE, SETTINGS, MESSAGE, CAROUSEL_TITLE } from "@/const";
 
 const Carousel = () => {
 	const [loading, setLoading] = useState(true);
