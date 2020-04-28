@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import BestHeader from "./BestHeader";
-import Tab from "./Tab";
-import BestItem from "./BestItem";
+import TabContainer from "./TabContainer";
+import { TabProvider } from "contexts/tabContext";
 import Loader from "components/state/Loader";
 import Message from "components/state/Message";
 import axios from "axios";
@@ -14,10 +14,12 @@ const Best = () => {
 
 	const getBestData = async () => {
 		try {
-			const response = await axios.get(`${process.env.REACT_APP_BASE_URL}categories?type=best`);
+			// const response = await axios.get(`${process.env.REACT_APP_BASE_URL}categories?type=best`);
+			const response = await axios.get(process.env.REACT_APP_BEST_URL);
 			const { status, data } = response;
 			if (status === 200) {
 				setData(data);
+				console.log(data);
 			}
 		} catch (err) {
 			setError(MESSAGE.error);
@@ -37,8 +39,9 @@ const Best = () => {
 	) : (
 		<div>
 			<BestHeader />
-			<Tab />
-			<div></div>
+			<TabProvider>
+				<TabContainer initialId={data[0].category_id} data={data} />
+			</TabProvider>
 			{error && <Message text={error.text} color={error.color} />}
 		</div>
 	);
