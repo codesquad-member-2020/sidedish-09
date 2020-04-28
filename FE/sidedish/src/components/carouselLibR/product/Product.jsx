@@ -7,8 +7,8 @@ import { ProductContext } from "contexts/productContext";
 
 const Product = () => {
 	const { modal, handleModal, modalContent } = useContext(ProductContext);
-	if (modal) {
-		const { thumb_images, ...info } = modalContent.data;
+	if (modal && modalContent) {
+		const { thumb_images, ...info } = modalContent;
 		return ReactDOM.createPortal(
 			<ProdBackground>
 				<ProdContainer>
