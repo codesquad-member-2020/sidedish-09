@@ -62,17 +62,18 @@ const ProductInfo = ({
 	point,
 	delivery_info,
 	delivery_fee,
-	prices: [originalPrice, sellingPrice],
+	n_price,
+	s_price,
 }) => {
 	const [state, dispatch] = useReducer(reducer, {
 		count: 1,
-		totalAmount: sellingPrice.slice(0, -1),
+		totalAmount: s_price,
 	});
 
 	const { count, totalAmount } = state;
 
 	useEffect(() => {
-		_sellingPriceInNumber = convertStrToNum(sellingPrice);
+		_sellingPriceInNumber = convertStrToNum(s_price);
 	}, []);
 
 	const handleDecrementBtn = () => {
@@ -103,9 +104,9 @@ const ProductInfo = ({
 				<ContentDescription>{delivery_fee}</ContentDescription>
 			</ContentContainer>
 			<PriceContainer>
-				<OriginalPrice>{originalPrice.slice(0, -1)}</OriginalPrice>
+				<OriginalPrice>{n_price}</OriginalPrice>
 				<SellingPrice>
-					{sellingPrice.slice(0, -1)}
+					{s_price}
 					<Unit>원</Unit>
 				</SellingPrice>
 			</PriceContainer>
@@ -135,7 +136,8 @@ ProductInfo.propTypes = {
 	point: PropTypes.string.isRequired,
 	delivery_info: PropTypes.string.isRequired,
 	delivery_fee: PropTypes.string.isRequired,
-	prices: PropTypes.arrayOf(PropTypes.string).isRequired,
+	n_price: PropTypes.string.isRequired,
+	s_price: PropTypes.string.isRequired,
 };
 
 export default ProductInfo;

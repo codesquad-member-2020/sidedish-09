@@ -70,6 +70,7 @@ const Carousel = () => {
 								return (
 									<CarouselItem
 										key={detail_hash}
+										hash={detail_hash}
 										image={image}
 										alt={alt}
 										deliveryType={delivery_type}

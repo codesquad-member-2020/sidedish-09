@@ -17,8 +17,10 @@ import {
 } from "style/carouselLibR/CarouselItem";
 import { ProductContext } from "contexts/productContext";
 import prodMockData from "assets/prodMockdata";
+import axios from "axios";
 
 const CarouselItem = ({
+	hash,
 	image,
 	alt,
 	deliveryType,
@@ -30,8 +32,21 @@ const CarouselItem = ({
 }) => {
 	const { handleModal } = useContext(ProductContext);
 
+	const toggleProduct = async ({ target }) => {
+		const hash = target.closest(".carousel-item__container").dataset.hash;
+		const response = await axios.get(`${process.env.REACT_APP_BASE_URL}items/${hash}`);
+		const { status, data } = response;
+		if (status === 200) {
+			handleModal(data);
+		}
+	};
+
 	return (
-		<CarouselItemContainer onClick={() => handleModal(prodMockData)}>
+		<CarouselItemContainer
+			className="carousel-item__container"
+			data-hash={hash}
+			onClick={toggleProduct}
+		>
 			<ThumbnailContainer>
 				<div>
 					<Thumbnail src={image} alt={alt} />
