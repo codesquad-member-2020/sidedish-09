@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collections;
 import java.util.List;
 
 @Slf4j
@@ -15,9 +16,9 @@ import java.util.List;
 @Repository
 public class SaleRepository {
 
-    private final String SELECT_DELIVERIES = "SELECT id, type, percent FROM sale WHERE id in ( :ids )";
-
     private final NamedParameterJdbcTemplate jdbcTemplate;
+
+    private final String SELECT_DELIVERIES = "SELECT id, type, percent FROM sale WHERE id in ( :ids )";
 
     private final RowMapper<Sale> rowDeliveryMapper = (rs, rowNum) ->
             Sale.builder()
@@ -27,7 +28,10 @@ public class SaleRepository {
                     .build();
 
     public List<Sale> findById(List<Long> ids) {
-        SqlParameterSource parameterSource = new MapSqlParameterSource().addValue("ids", ids.isEmpty() ? null : ids);
+        if (ids.isEmpty())
+            return Collections.emptyList();
+
+        SqlParameterSource parameterSource = new MapSqlParameterSource().addValue("ids", ids);
         return jdbcTemplate.query(SELECT_DELIVERIES, parameterSource, rowDeliveryMapper);
     }
 }

@@ -21,7 +21,7 @@ public class ItemService {
     private final SaleRepository saleRepository;
 
     public DetailItemResponseDto findByHash(String hash) {
-        Item item = itemRepository.findByHash(hash).orElseThrow(() -> new IllegalArgumentException(hash + "not exist"));
+        Item item = itemRepository.findByHash(hash).orElseThrow(() -> new IllegalArgumentException(hash));
         List<Sale> sales = new ArrayList<>(saleRepository.findById(item.getSaleIds()));
         return new DetailItemResponseDto(item, sales);
     }

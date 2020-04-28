@@ -22,17 +22,26 @@ class ItemRepositoryTest {
 
     @Test
     public void 해쉬값을_통해_아이템_가져오기() {
-        String hash = "H4665";
+        String hash = "H26C7";
         Item item = repository.findByHash(hash).orElseThrow(() -> new IllegalArgumentException(hash));
 
         assertThat(item.getHash()).isEqualTo(hash);
         assertThat(item.getNPrice()).isGreaterThan(0);
+        assertThat(item.getDeliveryFee()).isGreaterThan(0);
     }
 
     @Test
-    public void 해쉬값을_통해_아이템_리스트_가져오기() {
+    public void 존재하지_않는_해쉬로_아이템_조회() {
+        String hash = "ABCDEFG";
+        Optional<Item> item = repository.findByHash(hash);
+
+        assertThat(item.isPresent()).isEqualTo(false);
+    }
+
+    @Test
+    public void 아이디_리스트를_통해_아이템_리스트_조회() {
         List<Long> ids = Arrays.asList(1L, 12L);
-        List<Item> items = repository.findById(ids);
+        List<Item> items = repository.findAll(ids);
 
         assertThat(items.size()).isEqualTo(2);
         assertThat(items.get(0).getId()).isEqualTo(ids.get(0));
