@@ -12,7 +12,7 @@ import { LOADER_CONTAINER_STYLE, SETTINGS, MESSAGE, CAROUSEL_TITLE } from "./con
 
 const Carousel = () => {
 	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState(MESSAGE.error);
+	const [error, setError] = useState(false);
 	const [data, setData] = useState(null);
 
 	const getCarouselData = async () => {
