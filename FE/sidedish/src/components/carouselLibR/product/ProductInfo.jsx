@@ -37,6 +37,13 @@ const addCommas = (totalNum) => {
 	return totalWithComma;
 };
 
+const initialState = {
+	count: 1,
+	totalAmount: 0,
+};
+
+const setLatestPrice = (currentSellingPrice) => currentSellingPrice;
+
 const reducer = (state, action) => {
 	switch (action.type) {
 		case "INCREMENT":
@@ -51,6 +58,8 @@ const reducer = (state, action) => {
 				count: state.count - 1,
 				totalAmount: addCommas(convertStrToNum(state.totalAmount) - _sellingPriceInNumber),
 			};
+		case "LATEST":
+			return { ...state, totalAmount: setLatestPrice(action.payload) };
 		default:
 			return state;
 	}
@@ -62,18 +71,17 @@ const ProductInfo = ({
 	point,
 	delivery_info,
 	delivery_fee,
-	prices: [originalPrice, sellingPrice],
+	n_price,
+	s_price,
 }) => {
-	const [state, dispatch] = useReducer(reducer, {
-		count: 1,
-		totalAmount: sellingPrice.slice(0, -1),
-	});
+	const [state, dispatch] = useReducer(reducer, initialState);
 
 	const { count, totalAmount } = state;
 
 	useEffect(() => {
-		_sellingPriceInNumber = convertStrToNum(sellingPrice);
-	}, []);
+		_sellingPriceInNumber = _sellingPriceInNumber = convertStrToNum(s_price);
+		dispatch({ type: "LATEST", payload: s_price });
+	}, [s_price]);
 
 	const handleDecrementBtn = () => {
 		if (count === 1) return;
@@ -103,9 +111,9 @@ const ProductInfo = ({
 				<ContentDescription>{delivery_fee}</ContentDescription>
 			</ContentContainer>
 			<PriceContainer>
-				<OriginalPrice>{originalPrice.slice(0, -1)}</OriginalPrice>
+				<OriginalPrice>{n_price}</OriginalPrice>
 				<SellingPrice>
-					{sellingPrice.slice(0, -1)}
+					{s_price}
 					<Unit>원</Unit>
 				</SellingPrice>
 			</PriceContainer>
@@ -135,7 +143,8 @@ ProductInfo.propTypes = {
 	point: PropTypes.string.isRequired,
 	delivery_info: PropTypes.string.isRequired,
 	delivery_fee: PropTypes.string.isRequired,
-	prices: PropTypes.arrayOf(PropTypes.string).isRequired,
+	n_price: PropTypes.string,
+	s_price: PropTypes.string.isRequired,
 };
 
 export default ProductInfo;

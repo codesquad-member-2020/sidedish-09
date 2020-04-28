@@ -1,6 +1,6 @@
 import React, { createContext } from "react";
 import useModal from "hooks/useModal";
-import Product from "components/product/Product";
+import Product from "components/carouselLibR/product/Product";
 
 let ProductContext;
 const { Provider } = (ProductContext = createContext());
