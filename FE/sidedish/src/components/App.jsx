@@ -2,7 +2,7 @@ import React from "react";
 import GlobalStyles from "style/GlobalStyle";
 import Header from "./header/Header";
 import Carousel from "./carouselLibR/Carousel";
-import CarouselHuey from './carouselLibH/Carousel'
+import Main from './carouselLibH/Main'
 
 function App() {
 	return (
@@ -10,7 +10,7 @@ function App() {
 			<GlobalStyles width="1000px" />
 			<Header />
 			<Carousel />
-			<CarouselHuey url="main"/>
+			<Main />
 		</div>
 	);
 }
