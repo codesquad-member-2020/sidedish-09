@@ -8,8 +8,7 @@ import 'style/carouselLibH/detailCarousel.scss'
 
 const Detail = props => {
   const propsData = props.data.item;
-  console.log(propsData)
-  const setPrice = parseInt(propsData.s_price);
+  const setPrice = parseInt(propsData.s_price.split(",").join(""));
   const [quantity, setQuantity] = useState(1);
   const [totalPrice, setTotalPrice] = useState(setPrice);
   const close = e => {
