@@ -8,26 +8,11 @@ import axios from "axios";
 import "style/carouselLibR/Buttons.css";
 import { CarouselContainer } from "style/carouselLibR/Carousel";
 import { ProductProvider } from "contexts/productContext";
-
-const loaderContainerStyle = {
-	width: "100%",
-	height: "510px",
-	display: "flex",
-	justifyContent: "center",
-	alignItems: "center",
-};
-
-const SETTINGS = {
-	infinite: true,
-	speed: 500,
-	slidesToShow: 4,
-	slidesToScroll: 4,
-	initialSlide: 0,
-};
+import { LOADER_CONTAINER_STYLE, SETTINGS, MESSAGE, CAROUSEL_TITLE } from "./const";
 
 const Carousel = () => {
-	const [loading, setLoading] = useState(false);
-	const [error, setError] = useState(false);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(MESSAGE.error);
 	const [data, setData] = useState(null);
 
 	const getCarouselData = async () => {
@@ -35,10 +20,10 @@ const Carousel = () => {
 			const response = await axios.get(`${process.env.REACT_APP_BASE_URL}categories?type=carousel`);
 			const { status, data } = response;
 			if (status === 200) {
-				setData(data.find((carousel) => carousel.title === "밑반찬"));
+				setData(data.find((carousel) => carousel.title === CAROUSEL_TITLE.side));
 			}
 		} catch (err) {
-			setError("오류가 발생했습니다.😮");
+			setError(MESSAGE.error);
 			console.log(err);
 		}
 		setLoading(false);
@@ -49,7 +34,7 @@ const Carousel = () => {
 	}, []);
 
 	return loading ? (
-		<div style={loaderContainerStyle}>
+		<div style={LOADER_CONTAINER_STYLE}>
 			<Loader />
 		</div>
 	) : (
@@ -89,7 +74,7 @@ const Carousel = () => {
 					</Slider>
 				</CarouselContainer>
 			</ProductProvider>
-			{error && <Message color="#b71540" text={error} />}
+			{error && <Message text={error.text} color={error.color} />}
 		</div>
 	);
 };
