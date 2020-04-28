@@ -20,7 +20,7 @@ class DeliveryRepositoryTest {
     private DeliveryRepository repository;
 
     @Test
-    public void 딜리버리_가져오기() {
+    public void 딜리버리_조회() {
         List<Long> ids = Arrays.asList(1L, 2L);
 
         List<Delivery> deliveries = repository.findById(ids);
@@ -28,5 +28,14 @@ class DeliveryRepositoryTest {
         assertThat(deliveries.size()).isEqualTo(ids.size());
         assertThat(deliveries.get(0).getId()).isEqualTo(ids.get(0));
         assertThat(deliveries.get(1).getId()).isEqualTo(ids.get(1));
+    }
+
+    @Test
+    public void 비어있는_딜리버리_조회() {
+        List<Long> ids = Arrays.asList();
+
+        List<Delivery> deliveries = repository.findById(ids);
+
+        assertThat(deliveries.size()).isEqualTo(0);
     }
 }

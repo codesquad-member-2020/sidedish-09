@@ -20,6 +20,8 @@ import java.util.stream.Collectors;
 @Repository
 public class ItemRepository {
 
+    private final NamedParameterJdbcTemplate jdbcTemplate;
+
     private final String SELECT_ITEM_BY_HASH =
             "SELECT i.id, i.hash, i.image, i.title, i.description, i.n_price, i.delivery_fee, i.delivery_date, " +
                     "GROUP_CONCAT(DISTINCT d.delivery_id), GROUP_CONCAT(DISTINCT s.sale_id), " +
@@ -40,33 +42,8 @@ public class ItemRepository {
                     "LEFT OUTER JOIN detailImage dI on i.id = dI.item_id " +
                     "WHERE i.id In ( :ids ) GROUP BY i.id";
 
-    private final NamedParameterJdbcTemplate jdbcTemplate;
-
     private final RowMapper<Item> itemRowMapper = (ResultSet rs, int rowNum) -> {
-        String rawString = null;
-
-        rawString = rs.getString("GROUP_CONCAT(DISTINCT d.delivery_id)");
-        List<Long> deliveryIds = rawString != null ?
-                Arrays.stream(rawString.split(",")).map(Long::parseLong).collect(Collectors.toList()) :
-                Collections.emptyList();
-
-        rawString = rs.getString("GROUP_CONCAT(DISTINCT s.sale_id)");
-        List<Long> saleIds = rawString != null ?
-                Arrays.stream(rawString.split(",")).map(Long::parseLong).collect(Collectors.toList()) :
-                Collections.emptyList();
-
-        rawString = rs.getString("GROUP_CONCAT(DISTINCT t.url)");
-        List<String> thumbnails = rawString != null ?
-                Arrays.stream(rawString.split(",")).collect(Collectors.toList()) :
-                Collections.emptyList();
-
-        rawString = rs.getString("GROUP_CONCAT(DISTINCT dI.url)");
-        List<String> detailImages = rawString != null ?
-                Arrays.stream(rawString.split(",")).collect(Collectors.toList()) :
-                Collections.emptyList();
-
-
-        return Item.builder()
+        Item item = Item.builder()
                 .id(rs.getLong("i.id"))
                 .hash(rs.getString("i.hash"))
                 .image((rs.getString("i.image")))
@@ -75,20 +52,43 @@ public class ItemRepository {
                 .nPrice(rs.getLong("i.n_price"))
                 .deliveryFee(rs.getLong("i.delivery_fee"))
                 .deliveryDate(rs.getString("i.delivery_date"))
-                .deliveryIds(deliveryIds)
-                .saleIds(saleIds)
-                .thumbnails(thumbnails)
-                .detailImages(detailImages)
                 .build();
+
+        String rawString = rs.getString("GROUP_CONCAT(DISTINCT d.delivery_id)");
+        if (!rs.wasNull())
+            item.addDeliveryIds(Arrays.stream(rawString.split(",")).map(Long::parseLong).collect(Collectors.toList()));
+
+        rawString = rs.getString("GROUP_CONCAT(DISTINCT s.sale_id)");
+        if (!rs.wasNull())
+            item.addSaleIds(Arrays.stream(rawString.split(",")).map(Long::parseLong).collect(Collectors.toList()));
+
+
+        rawString = rs.getString("GROUP_CONCAT(DISTINCT t.url)");
+        if (!rs.wasNull())
+            item.addThumbnail(Arrays.stream(rawString.split(",")).collect(Collectors.toList()));
+
+
+        rawString = rs.getString("GROUP_CONCAT(DISTINCT dI.url)");
+        if (!rs.wasNull())
+            item.addDetailImages(Arrays.stream(rawString.split(",")).collect(Collectors.toList()));
+
+        return item;
     };
 
     public Optional<Item> findByHash(String hash) {
         SqlParameterSource parameterSource = new MapSqlParameterSource().addValue("hash", hash);
-        return Optional.ofNullable(jdbcTemplate.queryForObject(SELECT_ITEM_BY_HASH, parameterSource, itemRowMapper));
+        List<Item> items = jdbcTemplate.query(SELECT_ITEM_BY_HASH, parameterSource, itemRowMapper);
+        if (items.isEmpty())
+            return Optional.empty();
+
+        return Optional.of(items.get(0));
     }
 
-    public List<Item> findById(List<Long> ids) {
-        SqlParameterSource parameterSource = new MapSqlParameterSource().addValue("ids", ids.isEmpty() ? null : ids);
+    public List<Item> findAll(List<Long> ids) {
+        if (ids.isEmpty())
+            return Collections.emptyList();
+
+        SqlParameterSource parameterSource = new MapSqlParameterSource().addValue("ids", ids);
         return jdbcTemplate.query(SELECT_ITEMS_BY_ID, parameterSource, itemRowMapper);
     }
 }

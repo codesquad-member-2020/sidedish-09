@@ -18,20 +18,13 @@ class CategoryRepositoryTest {
     @Autowired
     private CategoryRepository repository;
 
-    @Test
-    public void 카테고리_하나_가져오기() {
-        Category category = repository.findById(1L).orElseThrow(IllegalArgumentException::new);
-
-        assertThat(category.getId()).isEqualTo(1L);
-        assertThat(category.getTitle()).isEqualTo("밑반찬");
-        assertThat(category.getDescription()).isEqualTo("언제 먹어도 든든한 밑반찬");
-        assertThat(category.getItemIds().size()).isEqualTo(8);
-    }
 
     @Test
-    public void 카테고리_모두_가져오기() {
+    public void 캐로셀_타입_조회() {
         List<Category> categories = repository.findAll("carousel");
 
-        assertThat(categories.size()).isEqualTo(repository.count());
+        for(Category category: categories) {
+            assertThat(category.getType()).isEqualTo("carousel");
+        }
     }
 }

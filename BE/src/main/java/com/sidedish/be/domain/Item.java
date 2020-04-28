@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ToString
-@Setter
 @Getter
 @NoArgsConstructor
 public class Item {
@@ -41,8 +40,7 @@ public class Item {
 
     @Builder
     public Item(Long id, String hash, String image, String title, String description,
-                Long nPrice, Long deliveryFee, String deliveryDate,
-                List<Long> deliveryIds, List<Long> saleIds, List<String> thumbnails, List<String> detailImages) {
+                Long nPrice, Long deliveryFee, String deliveryDate) {
         this.id = id;
         this.hash = hash;
         this.image = image;
@@ -51,9 +49,21 @@ public class Item {
         this.nPrice = nPrice;
         this.deliveryFee = deliveryFee;
         this.deliveryDate = deliveryDate;
-        this.deliveryIds.addAll(deliveryIds);
-        this.saleIds.addAll(saleIds);
+    }
+
+    public void addDeliveryIds(List<Long> ids) {
+        this.deliveryIds.addAll(ids);
+    }
+
+    public void addSaleIds(List<Long> ids) {
+        this.saleIds.addAll(ids);
+    }
+
+    public void addThumbnail(List<String> thumbnails) {
         this.thumbnails.addAll(thumbnails);
-        this.detailImages.addAll(detailImages);
+    }
+
+    public void addDetailImages(List<String> detailImage) {
+        this.detailImages.addAll(detailImage);
     }
 }

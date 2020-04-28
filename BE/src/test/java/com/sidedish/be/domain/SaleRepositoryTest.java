@@ -20,7 +20,7 @@ class SaleRepositoryTest {
     private SaleRepository repository;
 
     @Test
-    public void 세일_가져오기() {
+    public void 할인_조회() {
         List<Long> ids = Arrays.asList(1L, 2L);
 
         List<Sale> sales = repository.findById(ids);
@@ -30,5 +30,14 @@ class SaleRepositoryTest {
         assertThat(sales.get(0).getPercent()).isGreaterThan(0);
         assertThat(sales.get(1).getId()).isEqualTo(ids.get(1));
         assertThat(sales.get(1).getPercent()).isGreaterThan(0);
+    }
+
+    @Test
+    public void 비어있는_할인_조회() {
+        List<Long> ids = Arrays.asList();
+
+        List<Sale> sales = repository.findById(ids);
+
+        assertThat(sales.size()).isEqualTo(0);
     }
 }

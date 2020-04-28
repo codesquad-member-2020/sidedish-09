@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collections;
 import java.util.List;
 
 @Slf4j
@@ -15,9 +16,9 @@ import java.util.List;
 @Repository
 public class DeliveryRepository {
 
-    private final String SELECT_DELIVERIES = "SELECT id, type FROM delivery WHERE id in ( :ids )";
-
     private final NamedParameterJdbcTemplate jdbcTemplate;
+
+    private final String SELECT_DELIVERIES = "SELECT id, type FROM delivery WHERE id in ( :ids )";
 
     private final RowMapper<Delivery> rowDeliveryMapper = (rs, rowNum) ->
             Delivery.builder()
@@ -26,7 +27,10 @@ public class DeliveryRepository {
                     .build();
 
     public List<Delivery> findById(List<Long> ids) {
-        SqlParameterSource parameterSource = new MapSqlParameterSource().addValue("ids", ids.isEmpty() ? null : ids);
+        if(ids.isEmpty())
+            return Collections.emptyList();
+
+        SqlParameterSource parameterSource = new MapSqlParameterSource().addValue("ids", ids);
         return jdbcTemplate.query(SELECT_DELIVERIES, parameterSource, rowDeliveryMapper);
     }
 }
