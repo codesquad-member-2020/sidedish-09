@@ -13,14 +13,15 @@ const Carousel = props => {
     const target = e.currentTarget;
     const targetID = target.dataset.item;
     const targetTitle = target.querySelector('.item-title').innerHTML;
-    const response = await axios.get(`${process.env.REACT_APP_DETAIL_URL}items/${targetID}`);
-    console.log(response)
+    const response = await axios.get(`${process.env.REACT_APP_BASE_URL}items/${targetID}`);
     return props.onClickHandler(response.data, targetTitle);
   };
 
   const getItem = async () => {
-    const response = await axios.get(`${process.env.REACT_APP_BASE_URL}${props.url}`);
-    return response.data;
+    const response = await axios.get(`${process.env.REACT_APP_BASE_URL}categories?type=carousel`);
+    const { data } = response;
+    const findData = data.find((carousel) => carousel.title === "든든한 반찬");
+    return findData.items
   };
   const state = useAsync(getItem);
   const { loading, data: mainItem, error } = state;
@@ -42,7 +43,7 @@ const Carousel = props => {
       </p>
       <div className='inner'>
         <Slider {...settings}>
-          {mainItem.body.map((item, index) => (
+          {mainItem.map((item, index) => (
             <div className='item' key={index} data-item={item.detail_hash} onClick={onClickTargetID}>
               <div className='item-thumb'>
                 <img src={item.image} alt={item.alt} />
