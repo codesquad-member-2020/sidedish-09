@@ -12,9 +12,7 @@ if [ $REMOTE != $LOCAL ]; then
     git pull
 fi
 
-echo ">>> Stop nginx, tomcat "
-service nginx stop
-$TOMCAT_DIR/bin/shutdown.sh
+./teardown.sh
 
 echo ">>> Delete react file and webapps file"
 rm -rf $NGINX_STATIC_DIR/*
