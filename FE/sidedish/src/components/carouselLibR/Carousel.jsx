@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import CarouselHeader from "./CarouselHeader";
 import Slider from "react-slick";
 import Loader from "components/state/Loader";
+import Message from "components/state/Message";
 import CarouselItem from "./CarouselItem";
 import axios from "axios";
 import "style/carouselLibR/Buttons.css";
@@ -25,7 +26,8 @@ const SETTINGS = {
 };
 
 const Carousel = () => {
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(false);
 	const [data, setData] = useState(null);
 
 	const getCarouselData = async () => {
@@ -36,6 +38,7 @@ const Carousel = () => {
 				setData(data.find((carousel) => carousel.title === "밑반찬"));
 			}
 		} catch (err) {
+			setError("오류가 발생했습니다.😮");
 			console.log(err);
 		}
 		setLoading(false);
@@ -86,6 +89,7 @@ const Carousel = () => {
 					</Slider>
 				</CarouselContainer>
 			</ProductProvider>
+			{error && <Message color="#b71540" text={error} />}
 		</div>
 	);
 };
