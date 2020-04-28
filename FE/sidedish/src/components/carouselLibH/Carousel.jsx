@@ -5,7 +5,8 @@ import useAsync from 'hooks/useAsync';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'style/carouselLibH/carousel.scss';
-
+import Loader from "components/state/Loader";
+import { LOADER_CONTAINER_STYLE } from "components/carouselLibR/const";
 
 const Carousel = props => {
   const onClickTargetID = async e => {
@@ -25,7 +26,7 @@ const Carousel = props => {
   };
   const state = useAsync(getItem);
   const { loading, data: mainItem, error } = state;
-  if (loading) return <div>로딩중</div>;
+  if (loading) return <div style={LOADER_CONTAINER_STYLE}><Loader /></div>
   if (error) return <div>에러</div>;
   if (!mainItem) return null;
 
