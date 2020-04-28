@@ -7,7 +7,7 @@ CREATE TABLE sidedish.item (
       hash VARCHAR(5) NOT NULL,
       image VARCHAR(100) NOT NULL,
       title VARCHAR(45) NOT NULL,
-      description VARCHAR(100) NULL,
+      description VARCHAR(100),
       n_price BIGINT NOT NULL,
       delivery_fee BIGINT NOT NULL,
       delivery_date SET('월', '화', '수', '목', '금', '토', '일') NOT NULL,
@@ -94,7 +94,7 @@ ENGINE = InnoDB;
 CREATE TABLE sidedish.category (
       id BIGINT NOT NULL AUTO_INCREMENT,
       title VARCHAR(45) NOT NULL,
-      description VARCHAR(100) NOT NULL,
+      description VARCHAR(100),
       PRIMARY KEY (id))
 ENGINE = InnoDB;
 
