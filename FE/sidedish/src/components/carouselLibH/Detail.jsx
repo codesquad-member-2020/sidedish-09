@@ -42,10 +42,10 @@ const Detail = props => {
   };
   return (
     <Mask className='mask' disappear={props.disappear}>
+      <CloseBtn className='btn-close' onClick={close}>
+        <IoMdClose size='50' color='#bfbfbf' />
+      </CloseBtn>
       <div className='detail-wrap'>
-        <CloseBtn className='btn-close' onClick={close}>
-          <IoMdClose size='50' color='#bfbfbf' />
-        </CloseBtn>
         <div className='detail-head'>
           <Slider {...settings} className='detail-thumb'>
             {propsData.thumb_images.map((img, index) => (

@@ -49,8 +49,9 @@ const BadgeBox = styled.span`
 
 const CloseBtn = styled.div`
   position: absolute;
-  top: 0px;
-  right: 0px;
+  z-index: 1000;
+  top: 50px;
+  right: 145px;
   cursor: pointer;
   animation-duration: 0.35s;
   animation-timing-function: ease-out;
