@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CarouselHeader from "./CarouselHeader";
 import Slider from "react-slick";
-import Loader from "../loader/Loader";
+import Loader from "components/state/Loader";
 import CarouselItem from "./CarouselItem";
 import axios from "axios";
 import "style/carouselLibR/Buttons.css";
