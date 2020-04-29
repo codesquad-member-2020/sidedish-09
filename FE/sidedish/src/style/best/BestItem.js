@@ -65,7 +65,8 @@ const PriceContainer = styled.dd`
 const OriginalPrice = styled.del`
 	color: #666;
 	font-size: 14px;
-	margin: 6px 5px 0;
+	margin: 6px 0;
+	margin-right: 10px;
 	display: inline-block;
 `;
 
@@ -75,7 +76,7 @@ const SellingPrice = styled.p`
 	font-size: 25px;
 	font-weight: bold;
 	letter-spacing: -0.04em;
-	margin: 2px 5px 0px;
+	margin: 2px 0px;
 	display: inline-block;
 `;
 
