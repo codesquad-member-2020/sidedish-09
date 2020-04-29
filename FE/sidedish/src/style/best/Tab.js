@@ -7,7 +7,8 @@ const TabBox = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	color: ${(props) => (props.active ? "#fff" : "grey")};
+	${(props) =>
+		props.active ? { background: "#1FCBC7", color: "#fff" } : { background: "#fff", color: "#999" }}
 	transition: all 0.1s ease-in-out;
 	cursor: pointer;
 `;

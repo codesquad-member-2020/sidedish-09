@@ -3,8 +3,12 @@ import { TabContext } from "contexts/tabContext";
 import { TabBox } from "style/best/Tab";
 
 const Tab = ({ children, id }) => {
-	const { handleClick } = useContext(TabContext);
-	return <TabBox onClick={() => handleClick(id)}>{children}</TabBox>;
+	const { activeId, handleClick } = useContext(TabContext);
+	return (
+		<TabBox onClick={() => handleClick(id)} active={activeId === id}>
+			{children}
+		</TabBox>
+	);
 };
 
 export default Tab;
