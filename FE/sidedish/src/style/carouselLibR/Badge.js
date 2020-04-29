@@ -12,7 +12,11 @@ const BadgeBox = styled.div`
 	font-weight: 400;
 	line-height: 11px;
 	padding: 6px;
+	border-radius: 2px;
 	${({ color }) => BackgroundStyles[color]};
+	:not(:last-child) {
+		margin-right: 5px;
+	}
 `;
 
 export { BadgeBox };
