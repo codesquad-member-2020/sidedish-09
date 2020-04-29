@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import BestHeader from "./BestHeader";
 import TabContainer from "./TabContainer";
-import { TabProvider } from "contexts/tabContext";
 import Loader from "components/state/Loader";
 import Message from "components/state/Message";
-import axios from "axios";
-import { LOADER_CONTAINER_STYLE, MESSAGE } from "@/const";
 import { BestContainer } from "style/best/Best";
+import { TabProvider } from "contexts/tabContext";
+import { LOADER_CONTAINER_STYLE, MESSAGE } from "@/const";
 
 const Best = () => {
 	const [loading, setLoading] = useState(true);
