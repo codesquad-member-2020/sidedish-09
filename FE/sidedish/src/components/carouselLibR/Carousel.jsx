@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import CarouselHeader from "./CarouselHeader";
 import Slider from "react-slick";
+import CarouselItem from "./CarouselItem";
 import Loader from "components/state/Loader";
 import Message from "components/state/Message";
-import CarouselItem from "./CarouselItem";
-import axios from "axios";
 import "style/carouselLibR/Buttons.css";
 import { CarouselContainer } from "style/carouselLibR/Carousel";
 import { ProductProvider } from "contexts/productContext";
-import { LOADER_CONTAINER_STYLE, SETTINGS, MESSAGE, CAROUSEL_TITLE } from "./const";
+import { LOADER_CONTAINER_STYLE, SETTINGS, MESSAGE, CAROUSEL_TITLE } from "@/const";
 
 const Carousel = () => {
 	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState(MESSAGE.error);
+	const [error, setError] = useState(false);
 	const [data, setData] = useState(null);
 
 	const getCarouselData = async () => {

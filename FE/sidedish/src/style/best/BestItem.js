@@ -1,66 +1,37 @@
 import styled from "styled-components";
 
-const CarouselItemContainer = styled.div`
-	width: 250px;
-	padding: 0 auto;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+const BestItemBox = styled.div`
+	width: 320px;
+	height: 450px;
 	cursor: pointer;
+	:not(last-child) {
+		margin-right: 10px;
+	}
 `;
 
 const ThumbnailContainer = styled.div`
-	width: 100%;
-	height: 215px;
+	width: 320px;
+	height: 320px;
 	display: flex;
 	justify-content: center;
-	div {
-		position: relative;
-	}
-`;
-
-const Overlay = styled.div`
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 215px;
-	height: 215px;
-	border-radius: 50%;
-	transition: all 0.1s ease-in-out;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	background: rgba(0, 0, 0, 0.5);
-	opacity: 0;
-	div {
-		color: #fff;
-		font-weight: bold;
-		font-size: 14px;
-		letter-spacing: 1.2;
-		padding: 10px;
-		&:first-child {
-			border-bottom: 1px solid #fff;
-		}
-	}
-	&:hover {
-		opacity: 1;
-	}
+	position: relative;
 `;
 
 const Thumbnail = styled.img`
-	width: 215px;
-	height: 215px;
-	border-radius: 50%;
+	width: 100%;
+	height: 100%;
 	position: absolute;
 	top: 0;
 	left: 0;
 `;
 
 const DetailContainer = styled.dl`
-	width: 215px;
-	margin: 16px 0;
+	width: 100%;
+	background: #fff;
+	padding-top: 17px;
+	padding-bottom: 17px;
+	padding-left: 17px;
+	padding-right: 17px;
 `;
 
 const Title = styled.dt`
@@ -69,7 +40,6 @@ const Title = styled.dt`
 	line-height: 1.5em;
 	font-weight: 600;
 	letter-spacing: -0.07em;
-	text-align: center;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -80,7 +50,6 @@ const Description = styled.dd`
 	width: 100%;
 	font-size: 13px;
 	color: #666;
-	text-align: center;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -89,7 +58,6 @@ const Description = styled.dd`
 
 const PriceContainer = styled.dd`
 	display: flex;
-	justify-content: center;
 	align-items: center;
 	height: 25px;
 `;
@@ -97,7 +65,8 @@ const PriceContainer = styled.dd`
 const OriginalPrice = styled.del`
 	color: #666;
 	font-size: 14px;
-	margin: 6px 5px 0;
+	margin: 6px 0;
+	margin-right: 10px;
 	display: inline-block;
 `;
 
@@ -107,7 +76,7 @@ const SellingPrice = styled.p`
 	font-size: 25px;
 	font-weight: bold;
 	letter-spacing: -0.04em;
-	margin: 2px 5px 0px;
+	margin: 2px 0px;
 	display: inline-block;
 `;
 
@@ -121,12 +90,17 @@ const Unit = styled.span`
 
 const BadgeContainer = styled.div`
 	display: flex;
+	justify-content: flex-start;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: 10px;
 `;
 
 export {
-	CarouselItemContainer,
+	BestItemBox,
 	ThumbnailContainer,
-	Overlay,
 	Thumbnail,
 	DetailContainer,
 	Title,

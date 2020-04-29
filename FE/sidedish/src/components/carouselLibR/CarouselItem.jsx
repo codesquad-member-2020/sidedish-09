@@ -16,7 +16,6 @@ import {
 	BadgeContainer,
 } from "style/carouselLibR/CarouselItem";
 import { ProductContext } from "contexts/productContext";
-import prodMockData from "assets/prodMockdata";
 import axios from "axios";
 
 const CarouselItem = ({
