@@ -36,6 +36,7 @@ const Overlay = styled.div`
 	opacity: 0;
 	div {
 		color: #fff;
+		font-weight: bold;
 		font-size: 14px;
 		letter-spacing: 1.2;
 		padding: 10px;
