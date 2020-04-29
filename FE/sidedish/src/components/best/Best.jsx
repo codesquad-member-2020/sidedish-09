@@ -15,12 +15,10 @@ const Best = () => {
 
 	const getBestData = async () => {
 		try {
-			// const response = await axios.get(`${process.env.REACT_APP_BASE_URL}categories?type=best`);
-			const response = await axios.get(process.env.REACT_APP_BEST_URL);
+			const response = await axios.get(`${process.env.REACT_APP_BASE_URL}categories?type=best`);
 			const { status, data } = response;
 			if (status === 200) {
 				setData(data);
-				console.log(data);
 			}
 		} catch (err) {
 			setError(MESSAGE.error);
