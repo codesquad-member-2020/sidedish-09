@@ -21,6 +21,7 @@ public class DetailItemResponseDto {
     }
 
     private String hash;
+    private String title;
     private String top_image;
     private List<String> thumb_images;
     private String product_description;
@@ -41,11 +42,12 @@ public class DetailItemResponseDto {
         this.s_price = decimalFormat.format(salePrice);
         this.point = String.format("%s원", decimalFormat.format(salePrice / 10));
         this.hash = item.getHash();
+        this.title = item.getTitle();
         this.top_image = item.getThumbnails().get(0);
         this.thumb_images = item.getThumbnails();
         this.product_description = item.getDescription();
-        this.delivery_info = String.format("서울 경기 새벽배송 / 전국택배 (제주 및 도서산간 불가) [%s] 수령 가능한 상품입니다.)", item.getDeliveryDate());
-        this.delivery_fee = String.format("%s원 (40,000원 이상 구매 시 무료", decimalFormat.format(item.getDeliveryFee()));
+        this.delivery_info = String.format("서울 경기 새벽배송 / 전국택배 (제주 및 도서산간 불가) [%s] 수령 가능한 상품입니다.", item.getDeliveryDate());
+        this.delivery_fee = String.format("%s원 (40,000원 이상 구매 시 무료)", decimalFormat.format(item.getDeliveryFee()));
         this.detail_section = item.getDetailImages();
     }
 }

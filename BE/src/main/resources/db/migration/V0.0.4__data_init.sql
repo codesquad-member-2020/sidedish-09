@@ -11,7 +11,7 @@ VALUES
 INSERT INTO sidedish.sale
     (id, type, percent)
 VALUES
-    (1, '론칭특가', 5),(2, '이밴트특가', 10);
+    (1, '론칭특가', 5),(2, '이벤트특가', 10);
 
 
 INSERT INTO sidedish.category
