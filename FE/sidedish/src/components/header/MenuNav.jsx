@@ -1,19 +1,9 @@
 import React from 'react';
-import axios from 'axios';
 import { MenuNavStyled } from 'style/header/menuNav'
-import useAsync from 'hooks/useAsync'
-
-
-const fetchMenuList = async() => {
-  const response = await axios.get(process.env.REACT_APP_MOCKDATA_NAV)
-  return response.data.menu
-}
+import menuData from 'assets/menuMockData'
 
 const MenuNav = () => {
-  const state = useAsync(fetchMenuList)
-  const {loading, data: menuList, error} = state
-  if (loading) return <div>로딩중</div>;
-  if (error) return <div>에러</div>;
+  const menuList = menuData.menu
   if (!menuList) return null;
 
   return (
