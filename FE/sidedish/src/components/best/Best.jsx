@@ -6,6 +6,7 @@ import Loader from "components/state/Loader";
 import Message from "components/state/Message";
 import axios from "axios";
 import { LOADER_CONTAINER_STYLE, MESSAGE } from "@/const";
+import { BestContainer } from "style/best/Best";
 
 const Best = () => {
 	const [loading, setLoading] = useState(true);
@@ -37,13 +38,13 @@ const Best = () => {
 			<Loader />
 		</div>
 	) : (
-		<div>
+		<BestContainer>
 			<BestHeader />
 			<TabProvider>
 				<TabContainer initialId={data[0].category_id} data={data} />
 			</TabProvider>
 			{error && <Message text={error.text} color={error.color} />}
-		</div>
+		</BestContainer>
 	);
 };
 

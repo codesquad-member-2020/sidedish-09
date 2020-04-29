@@ -1,5 +1,5 @@
 import React from "react";
-import { Header, Title, SubTitle, Strong } from "style/carouselLibR/CarouselHeader";
+import { Header, Title, SubTitle, Strong } from "style/best/BestHeader";
 
 const BestHeader = () => (
 	<Header>

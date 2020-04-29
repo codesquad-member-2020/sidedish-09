@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { TabContext } from "contexts/tabContext";
+import { TabBox } from "style/best/Tab";
 
 const Tab = ({ children, id }) => {
 	const { handleClick } = useContext(TabContext);
-	return <div onClick={() => handleClick(id)}>{children}</div>;
+	return <TabBox onClick={() => handleClick(id)}>{children}</TabBox>;
 };
 
 export default Tab;

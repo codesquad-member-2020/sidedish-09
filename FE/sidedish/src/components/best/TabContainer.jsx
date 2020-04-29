@@ -1,29 +1,30 @@
-import React, { useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import BestItem from "./BestItem";
 import { TabContext, TabProvider } from "contexts/tabContext";
+import { Tabs, Panels } from "style/best/TabContainer";
 
 const TabContainer = ({ initialId, data }) => {
 	const { handleClick } = useContext(TabContext);
 
-	handleClick(initialId);
+	useEffect(() => handleClick(initialId), []);
 
 	return (
-		<div>
-			<div>
+		<>
+			<Tabs>
 				{data.map((bestItem) => (
 					<TabProvider.Tab id={bestItem.category_id}>{bestItem.title}</TabProvider.Tab>
 				))}
-			</div>
-			<div>
+			</Tabs>
+			<Panels>
 				{data.map((bestItem) => (
 					<TabProvider.TabPanel id={bestItem.category_id}>
-						{bestItem.items.slice(0, 3).map((items) => (
-							<BestItem {...items} />
+						{bestItem.items.slice(0, 3).map((items, i) => (
+							<BestItem key={bestItem.category_id + i} {...items} />
 						))}
 					</TabProvider.TabPanel>
 				))}
-			</div>
-		</div>
+			</Panels>
+		</>
 	);
 };
 
