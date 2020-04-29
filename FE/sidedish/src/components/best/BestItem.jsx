@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Badge from "components/carouselLibR/Badge";
 import {
 	BestItemBox,
@@ -41,6 +42,16 @@ const BestItem = ({ ...items }) => {
 			</DetailContainer>
 		</BestItemBox>
 	);
+};
+
+BestItem.propTypes = {
+	image: PropTypes.string.isRequired,
+	alt: PropTypes.string.isRequired,
+	title: PropTypes.string.isRequired,
+	description: PropTypes.string.isRequired,
+	n_price: PropTypes.string,
+	s_price: PropTypes.string.isRequired,
+	badge: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default BestItem;
