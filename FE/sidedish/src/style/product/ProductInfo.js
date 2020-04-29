@@ -15,7 +15,7 @@ const Title = styled.h2`
 `;
 
 const SubTitle = styled.p`
-	font-size: 13px;
+	font-size: 13.5px;
 	color: #666;
 	margin-bottom: 12px;
 `;
@@ -23,20 +23,21 @@ const SubTitle = styled.p`
 const ContentContainer = styled.dl`
 	display: grid;
 	grid-template-columns: max-content auto;
-	font-size: 13px;
+	font-size: 13.5px;
+	line-height: 1.3;
 	margin-bottom: 12px;
 `;
 
 const ContentTerm = styled.dt`
 	grid-column-start: 1;
 	font-weight: bold;
-	padding: 10px 0;
+	padding: 8px 0;
 `;
 
 const ContentDescription = styled.dd`
 	grid-column-start: 2;
 	color: #666;
-	padding: 10px 0;
+	padding: 8px 0;
 	padding-left: 15px;
 `;
 

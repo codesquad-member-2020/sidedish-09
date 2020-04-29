@@ -6,7 +6,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'style/carouselLibH/carousel.scss';
 import Loader from "components/state/Loader";
-import { LOADER_CONTAINER_STYLE } from "components/carouselLibR/const";
+import { LOADER_CONTAINER_STYLE } from "const";
 
 const Carousel = props => {
   const onClickTargetID = async e => {
